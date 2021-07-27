@@ -1,1 +1,2 @@
 This is a test of command line git.
+This is a test of solving merge conflicts.
