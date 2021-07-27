@@ -1,2 +1,3 @@
 Hello, there, Luna
 Hi, John
+How are you figuring out Git, Luna?
