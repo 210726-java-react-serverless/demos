@@ -29,6 +29,18 @@ public class WelcomeScreen extends Screen {
         try {
             String userSelection = consoleReader.readLine();
             System.out.println(userSelection); // if an exception is thrown this will not be executed
+
+            if(userSelection.equals("1")){
+                //todo
+            } else if (userSelection.equals("2")){
+                RegisterScreen registerScreen = new RegisterScreen(this);
+                registerScreen.render();
+            } else if (userSelection.equals("3")){
+                //todo
+            } else {
+                System.out.println("You have entered an invalid command");
+            }
+
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
         } finally {
