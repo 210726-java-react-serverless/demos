@@ -21,9 +21,6 @@ public class WelcomeScreen extends Screen {
 
         System.out.print(menu);
 
-//        InputStreamReader consoleInputReader = new InputStreamReader(System.in);
-//        BufferedReader consoleReader = new BufferedReader(consoleInputReader);
-
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
