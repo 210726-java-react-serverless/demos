@@ -31,8 +31,6 @@ public class WelcomeScreen extends Screen {
             validatedUserInput = Integer.parseInt(userSelection);
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
-        } finally {
-            System.out.println("This will run regardless of whether or not an exception is thrown.");
         }
 
         switch(validatedUserInput){
