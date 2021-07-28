@@ -28,22 +28,6 @@ public class WelcomeScreen extends Screen {
             System.err.println("An IOException was thrown...");
         } finally {
             System.out.println("This will run regardless of whether or not an exception is thrown.");
-
-            // TODO clean up this ugly garbage!
-            try {
-                consoleReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
-
-
-
     }
-  public void close() {
-	  try {consoleReader.close();}
-	  catch (IOError as ioe)
-      {System.out.println("couldn't close console");}
   }
-}

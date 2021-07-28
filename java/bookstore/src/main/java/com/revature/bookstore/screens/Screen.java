@@ -25,4 +25,10 @@ public abstract class Screen {
 
     public abstract void render();
 
+    public void closeBuffer() {
+	try {
+	    consoleReader.close();
+	} catch (java.io.IOException ioe) {
+	    System.out.println("couldn't print to system");}
+    }
 }
