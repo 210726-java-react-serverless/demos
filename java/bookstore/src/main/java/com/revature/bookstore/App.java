@@ -6,9 +6,13 @@ import com.revature.bookstore.screens.WelcomeScreen;
 public class App {
 
     public static void main(String[] args) {
-        WelcomeScreen welcomeScreen = new WelcomeScreen();
-        welcomeScreen.render();
-        welcomeScreen.closeBuffer();
+        //WelcomeScreen welcomeScreen = new WelcomeScreen();
+        //welcomeScreen.render();
+        //welcomeScreen.closeBuffer();
+
+        RegisterScreen registerScreen = new RegisterScreen();
+        registerScreen.render();
+        registerScreen.closeBuffer();
     }
 
 }
