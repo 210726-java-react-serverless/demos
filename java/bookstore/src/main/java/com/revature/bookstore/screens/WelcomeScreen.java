@@ -28,11 +28,25 @@ public class WelcomeScreen extends Screen {
 
         try {
             String userSelection = consoleReader.readLine();
-            System.out.println(userSelection); // if an exception is thrown this will not be executed
+            System.out.println("You have selected: " + userSelection); // if an exception is thrown this will not be executed
+            switch (userSelection) {
+                case "1": LoginScreen loginScreen = new LoginScreen();
+                    loginScreen.render();//display loginscreen
+                    break;
+                case "2": RegisterScreen registerScreen = new RegisterScreen();
+                    registerScreen.render();//display registerscreen
+                    break;
+                case "3": //exit application
+                    break;
+                default:
+                    System.out.println("Invalid Entry!");
+                    break;
+            }
+
+
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
         } finally {
-            System.out.println("This will run regardless of whether or not an exception is thrown.");
 
             // TODO clean up this ugly garbage!
             try {
