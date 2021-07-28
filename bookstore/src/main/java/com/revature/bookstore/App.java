@@ -1,5 +1,6 @@
 package com.revature.bookstore;
 
+import com.revature.bookstore.screens.RegisterScreen;
 import com.revature.bookstore.screens.WelcomeScreen;
 
 public class App {
@@ -7,6 +8,13 @@ public class App {
 //        WelcomeScreen welcomeScreen = null; // null pointer exception; no object to reference
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         welcomeScreen.render();
-        System.out.println("test");
+        switch (Integer.parseInt(welcomeScreen.getUserSelection())) {
+           case 1:
+               break;
+            case 2:
+               RegisterScreen registerScreen = new RegisterScreen();
+               registerScreen.render();
+               break;
+       }
     }
 }

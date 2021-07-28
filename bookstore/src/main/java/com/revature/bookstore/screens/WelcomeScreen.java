@@ -6,8 +6,14 @@ import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen{
 
+    private String userSelection;
+
     public WelcomeScreen() {
         super("WelcomeScreen", "/welcome");
+    }
+
+    public String getUserSelection() {
+        return userSelection;
     }
 
     @Override
@@ -25,8 +31,12 @@ public class WelcomeScreen extends Screen{
         BufferedReader consoleReader = new BufferedReader(consoleInputReader);
 
         try {
-            String userSelection = consoleReader.readLine();
-            System.out.println(userSelection);  // if an exception is thrown, this will not be executed
+            userSelection = consoleReader.readLine();
+
+
+//            RegisterScreen registerScreen = new RegisterScreen();
+//            registerScreen.render();
+//            System.out.println(userSelection);  // if an exception is thrown, this will not be executed
         } catch(IOException ioe) {
             System.err.println("An IOException was thrown...");
         }  // catch(NullPointerException npe) { }
