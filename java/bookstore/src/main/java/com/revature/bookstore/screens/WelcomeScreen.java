@@ -40,7 +40,7 @@ public class WelcomeScreen extends Screen {
                 System.out.println("Page is under construction, but we can register you today");
                 //consoleReader.close();
             }
-                RegistrationScreen register = new RegistrationScreen();
+                RegisterScreen register = new RegisterScreen();
                 register.render();
                 //consoleReader.close();
 
