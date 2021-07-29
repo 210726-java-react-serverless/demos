@@ -20,12 +20,11 @@ public class UserRepository implements CrudRepository<AppUser> {
     public AppUser save(AppUser newUser) {
         dataSource = new File("src/main/resources/data.txt");
 
-        try {
-            FileWriter writer = new FileWriter(dataSource, true);
+
+        try (FileWriter writer = new FileWriter(dataSource, true)) {
             newUser.setId(getID(dataSource)); // TODO this will need to be fixed, as all users will have the same id.
             writer.append(newUser.toFile());
             writer.flush();
-            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
