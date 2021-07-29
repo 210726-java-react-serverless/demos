@@ -9,10 +9,12 @@ import java.io.*;
 public class RegisterScreen extends Screen{
 
     private final UserService userService;
+    private int iterator;
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
         this.userService = userService;
+        iterator = 1;
     }
 
     /*
@@ -41,9 +43,12 @@ public class RegisterScreen extends Screen{
         String password = consoleReader.readLine();
 
         AppUser newUser = new AppUser(firstName, lastName, email, username, password);
-        System.out.println(newUser);
 
-        userService.register(newUser);
+        userService.register(newUser, iterator);
+
+
+        System.out.println(newUser);
+        iterator++;
 
         router.navigate("/welcome");
     }
