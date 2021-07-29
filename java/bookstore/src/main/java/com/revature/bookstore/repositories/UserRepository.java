@@ -3,7 +3,9 @@ package com.revature.bookstore.repositories;
 import com.revature.bookstore.models.AppUser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 public class UserRepository implements CrudRepository<AppUser> {
 
@@ -18,8 +20,9 @@ public class UserRepository implements CrudRepository<AppUser> {
     public AppUser save(AppUser newUser) {
         dataSource = new File("src/main/resources/data.txt");
 
+
         try (FileWriter writer = new FileWriter(dataSource, true)) {
-            newUser.setId(1); // TODO this will need to be fixed, as all users will have the same id.
+            newUser.setId(getID(dataSource)); // TODO this will need to be fixed, as all users will have the same id.
             writer.append(newUser.toFile());
             writer.flush();
         } catch (Exception e) {
@@ -38,6 +41,28 @@ public class UserRepository implements CrudRepository<AppUser> {
     @Override
     public boolean deleteById(int id) {
         return false;
+    }
+
+
+    public int getID(File n){
+
+        int NewId = 0;
+
+        try {
+            Scanner s = new Scanner(n);
+            while(s.hasNextLine()) {
+                NewId++;
+                s.nextLine();
+                System.out.println("increased ID");
+            }
+
+            s.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Data file wasn't found!");
+        }
+
+        return NewId;
+
     }
 
 }
