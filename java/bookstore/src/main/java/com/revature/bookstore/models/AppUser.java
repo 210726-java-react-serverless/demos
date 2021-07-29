@@ -1,6 +1,7 @@
 package com.revature.bookstore.models;
 
 import java.util.Objects;
+import java.lang.Math;
 
 public class AppUser {
 
@@ -23,9 +24,14 @@ public class AppUser {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId() {
+        long x = 0;
+         for(int i = 0 ; i < username.length(); i++ )
+         {
+              x += (Math.pow(2 , i)) * username.CharAt(i);
+         }
+         this.id = x; 
+        }
 
     public String getFirstName() {
         return firstName;
