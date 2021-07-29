@@ -4,7 +4,7 @@ import com.revature.bookstore.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
-public class LoginScreen extends Screen {
+public class LoginScreen extends Screen { //TODO implement login feature
 
     public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("LoginScreen", "/login", consoleReader, router);
