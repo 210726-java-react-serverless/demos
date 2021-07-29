@@ -1,42 +1,47 @@
 package com.revature.bookstore.screens;
 
-import java.io.*;
+import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.services.UserService;
+import com.revature.bookstore.util.ScreenRouter;
+
+import java.io.BufferedReader;
 
 public class RegisterScreen extends Screen {
 
-    public RegisterScreen() {
-        super("RegisterScreen", "/register");
+    private final UserService userService;
+
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
+        super("RegisterScreen", "/register", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override
-    public void render() throws IOException {
+    public void render() throws Exception {
+        System.out.println("\nRegister for a new account!");
 
-        String username;
-        String password;
+        System.out.print("First name: ");
+        String firstName = consoleReader.readLine();
 
-        // collecting user data
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Please enter a Username: ");
-        username = in.readLine();
-        System.out.println("Your username is: " + username);
-        System.out.print("Please enter a Password: ");
-        password = in.readLine();
-        System.out.println("Your password is: " + password);
+        System.out.print("Last name: ");
+        String lastName = consoleReader.readLine();
 
-        try {
-            RegisterScreen rs = new RegisterScreen();
-            rs.userWriter(username, password);
-        } catch (IOException ioe) {
-            System.out.println("there was an IO exception in regards to the userWriter Method");
-        }
-    }
+        System.out.print("Email: ");
+        String email = consoleReader.readLine();
 
-    private void userWriter(String username, String password) throws IOException {
-        FileWriter fw = new FileWriter("src/main/java/com/revature/bookstore/users/credentials.txt", true);
-        String entry = "\n" + username + " " + password;
-        fw.append(entry);
-        fw.flush();
-        fw.close();
+        System.out.print("Username: ");
+        String username = consoleReader.readLine();
+
+        System.out.print("Password: ");
+        String password = consoleReader.readLine();
+
+        AppUser newUser = new AppUser(firstName, lastName, email, username, password);
+
+        System.out.println(newUser);
+        router.navigate("/welcome");
+
+        userService.register(newUser);
+
+
     }
 
 }

@@ -1,17 +1,18 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.util.ScreenRouter;
+
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen() {
-        super("WelcomeScreen", "/welcome");
+    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
+        super("WelcomeScreen", "/welcome", consoleReader, router);
+        System.out.println("WelcomeScreen instantiated!");
     }
 
     @Override
-    public void render() {
+    public void render() throws Exception {
 
         String menu = "\nWelcome to RevaBooks!\n" +
                       "1) Login\n" +
@@ -21,36 +22,27 @@ public class WelcomeScreen extends Screen {
 
         System.out.print(menu);
 
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        String userSelection = consoleReader.readLine();
 
-        int validatedUserInput = -1;
+        switch (userSelection) {
 
-        try {
-            String userSelection = consoleReader.readLine();
-            System.out.println(userSelection); // if an exception is thrown this will not be executed
-            validatedUserInput = Integer.parseInt(userSelection);
-        } catch (IOException ioe) {
-            System.err.println("An IOException was thrown...");
-        }
-
-        switch(validatedUserInput){
-            case 1:
-                System.out.println("this character hasn't been unlocked yet");
+            case "1":
+                router.navigate("/login");
                 break;
-            case 2:
-                RegisterScreen rs = new RegisterScreen();
-                try {
-                    rs.render();
-                } catch (IOException e) {
-                    System.out.println("There was an IO Exception in Render()");
-                }
+            case "2":
+                router.navigate("/register");
                 break;
-            case 3:
-                System.out.println("Thank you for using our app");
-                return;
+            case "3":
+                System.out.println("Exiting application...");
+                // figure a way to make the app shutdown
+                // TODO this is ugly and bad practice, we will fix it later
+                System.exit(0);
             default:
-                System.out.println("You need to input a correct value.");
-                this.render();
+                System.out.println("You provided an invalid value, please try again.");
+
         }
+
+
+
     }
 }
