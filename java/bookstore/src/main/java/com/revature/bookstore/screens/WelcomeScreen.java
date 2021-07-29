@@ -34,12 +34,15 @@ public class WelcomeScreen extends Screen {
                 Person.Render();
             }if(userSelection.equals("3")){
                 System.out.println("Goodbye");
+                //consoleReader.close();
             }
             else {
                 System.out.println("Page is under construction, but we can register you today");
+                //consoleReader.close();
             }
                 RegistrationScreen register = new RegistrationScreen();
                 register.render();
+                //consoleReader.close();
 
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
