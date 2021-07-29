@@ -29,6 +29,13 @@ public class WelcomeScreen extends Screen {
         try {
             String userSelection = consoleReader.readLine();
             System.out.println(userSelection); // if an exception is thrown this will not be executed
+
+            if(userSelection.equals("2")) {
+                RegistrationScreen.render();
+            }
+                RegistrationScreen register = new RegistrationScreen();
+                register.render();
+
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
         } finally {
