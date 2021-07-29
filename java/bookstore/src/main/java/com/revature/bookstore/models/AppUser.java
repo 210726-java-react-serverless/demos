@@ -11,12 +11,13 @@ public class AppUser {
     private String username;
     private String password;
 
-    public AppUser(String firstName, String lastName, String email, String username, String password) {
+    public AppUser(String firstName, String lastName, String email, String username, String password, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.id = id;
     }
 
     public int getId() {

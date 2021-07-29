@@ -4,6 +4,8 @@ import com.revature.bookstore.models.AppUser;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class UserRepository implements CrudRepository<AppUser> {
 
@@ -16,12 +18,12 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     @Override
     public AppUser save(AppUser newUser) {
-        dataSource = new File("src/main/resources/data.txt");
 
         try {
-            FileWriter writer = new FileWriter(dataSource);
-            newUser.setId(1); // TODO this will need to be fixed, as all users will have the same id.
-            writer.write(newUser.toFile());
+            dataSource = new File("src/main/resources/data.txt");
+            FileWriter writer = new FileWriter(dataSource, true);
+            newUser.setId(newUser.getId());
+            writer.append("\r\n" + newUser.toFile());
             writer.flush();
             writer.close();
         } catch (Exception e) {

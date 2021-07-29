@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 public class RegisterScreen extends Screen {
 
     private final UserService userService;
+    private int idVal;
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
@@ -35,7 +36,8 @@ public class RegisterScreen extends Screen {
         System.out.print("Password: ");
         String password = consoleReader.readLine();
 
-        AppUser newUser = new AppUser(firstName, lastName, email, username, password);
+        idVal++;
+        AppUser newUser = new AppUser(firstName, lastName, email, username, password, idVal);
 
         System.out.println(newUser);
         router.navigate("/welcome");
