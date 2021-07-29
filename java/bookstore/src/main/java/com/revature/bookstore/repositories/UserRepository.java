@@ -47,5 +47,4 @@ public class UserRepository implements CrudRepository<AppUser> {
     private int makeId() {
         return (int)(1 + Math.random()*100000);
     }
-
 }
