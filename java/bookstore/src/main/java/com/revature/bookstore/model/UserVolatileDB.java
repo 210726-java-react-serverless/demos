@@ -1,16 +1,15 @@
 package com.revature.bookstore.model;
 
 import java.util.Stack;
-import java.io.File;  // Import the File class
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.FileNotFoundException;
+// import java.io.FileNotFoundException; // subclass of IOException
 import java.io.BufferedReader;
 
 public class UserVolatileDB {
 
-    private Stack<User> user_stack = new Stack<User>();
+    private Stack<User> user_stack = new Stack<>();
 
     public UserVolatileDB() {}
     public UserVolatileDB(String filename) {
@@ -19,7 +18,6 @@ public class UserVolatileDB {
 
     private void loadPersistent(String filename) {
         BufferedReader br = null;
-        File file = new File(filename);
         try {
             br = new BufferedReader(new FileReader(filename));
             String line;
@@ -28,8 +26,7 @@ public class UserVolatileDB {
                 user_stack.push(new User(values[0],values[1],values[2],values[3]));
             }
             System.out.printf("Successfully read database file %s.\n", filename);
-        } catch (FileNotFoundException fnfe) {fnfe.printStackTrace();} // no file
-         catch (IOException ioe) {ioe.printStackTrace();}
+        } catch (IOException ioe) {ioe.printStackTrace();} // no file or IO Exception
         finally {try {br.close();} catch (IOException e) {
             System.out.printf("Couldn't close data base file %s.\n", filename);
             } catch (NullPointerException npe) {
@@ -54,7 +51,7 @@ public class UserVolatileDB {
 
     // stack search is O(n), other data structures are O(lg(n))
     public User findUser(String username) {
-        Stack temp = new Stack();
+        Stack<User> temp = new Stack<>();
         while (user_stack.size() > 0) {
             User user = user_stack.pop();
             temp.push(user);
@@ -70,7 +67,7 @@ public class UserVolatileDB {
     }
 
     public void printAllUsers() {
-        Stack temp = new Stack();
+        Stack<User> temp = new Stack<>();
         System.out.println("Print all users\n");
         while (user_stack.size() > 0) {
             User user = user_stack.pop();
