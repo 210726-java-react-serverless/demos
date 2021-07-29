@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen() {
-        super("WelcomeScreen", "/welcome");
+    public WelcomeScreen(BufferedReader consoleReader) {
+        super("WelcomeScreen", "/welcome", consoleReader);
     }
 
     @Override
@@ -21,9 +21,6 @@ public class WelcomeScreen extends Screen {
 
         System.out.print(menu);
 
-//        InputStreamReader consoleInputReader = new InputStreamReader(System.in);
-//        BufferedReader consoleReader = new BufferedReader(consoleInputReader);
-
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
@@ -31,19 +28,7 @@ public class WelcomeScreen extends Screen {
             System.out.println(userSelection); // if an exception is thrown this will not be executed
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
-        } finally {
-            System.out.println("This will run regardless of whether or not an exception is thrown.");
-
-            // TODO clean up this ugly garbage!
-            try {
-                consoleReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
-
-
 
     }
 }
