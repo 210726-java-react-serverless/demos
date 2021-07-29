@@ -3,11 +3,6 @@ import java.io.IOException;
 import com.revature.bookstore.model.User;
 
 public class RegisterScreen extends Screen {
-    private String username;
-    // char[] password; // more secure alternative
-    private String password;
-    private String firstname;
-    private String lastname;
 
     public RegisterScreen() {
         super("RegisterScreen", "/Register");
@@ -26,6 +21,10 @@ public class RegisterScreen extends Screen {
 
     }
     public void render() {
+        String username;
+        String password;
+        String firstname;
+        String lastname;
 
         User user = null; // this null case should never be used
         do {
@@ -46,7 +45,9 @@ public class RegisterScreen extends Screen {
         String confirm = repeated_ask("above is all right? [Y/n]");
         if (confirm.equals("n")) render();
 
-        database.addUser(new User(username, password, firstname, lastname));
-
+        database.addUser(new User(username,password,firstname,lastname));
+    }
+    public void test() {database.addUser(
+            new User("username","password","firstname","lastname"));
     }
 }

@@ -44,9 +44,11 @@ public class UserVolatileDB {
                     + " is already taken: "
                     + foundUser.getFirstname()
                     + " "
-                    + foundUser.getLastname());
+                    + foundUser.getLastname() + "\n");
+            return;
         }
         user_stack.push(user);
+        System.out.printf("successfully added %s\n", user);
     }
 
     // stack search is O(n), other data structures are O(lg(n))
@@ -63,12 +65,13 @@ public class UserVolatileDB {
                 return user;
             }
         }
+        user_stack = temp;
         return null;
     }
 
     public void printAllUsers() {
         Stack<User> temp = new Stack<>();
-        System.out.println("Print all users\n");
+        System.out.print("Printing all users\n");
         while (user_stack.size() > 0) {
             User user = user_stack.pop();
             System.out.println(user);
@@ -91,7 +94,7 @@ public class UserVolatileDB {
             myWriter.close();
         }
         catch (IOException e){
-                System.out.println("An error occurred.");
+                System.out.printf("An error occurred when writing the persistent file %s.\n", filename);
                 e.printStackTrace();
             }
         finally {try {myWriter.close();}

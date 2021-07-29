@@ -7,11 +7,10 @@ import com.revature.bookstore.model.UserVolatileDB;
 public abstract class Screen {
 
     protected static BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+    protected static UserVolatileDB database = new UserVolatileDB("database.csv");
 
     protected String name;
     protected String route;
-
-    protected UserVolatileDB database = new UserVolatileDB("database.csv");
 
     public Screen(String name, String route) {
         this.name = name;

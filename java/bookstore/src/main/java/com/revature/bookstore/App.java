@@ -3,6 +3,7 @@ package com.revature.bookstore;
 import com.revature.bookstore.model.UserVolatileDB;
 import com.revature.bookstore.model.User;
 import com.revature.bookstore.screens.RegisterScreen;
+import com.revature.bookstore.screens.Screen;
 import com.revature.bookstore.screens.WelcomeScreen;
 
 public class App {
@@ -16,12 +17,12 @@ public class App {
         registerScreen.render();
         registerScreen.closeBuffer();
 
-        /* add records to database (doesn't check for or remove duplicates)
-        UserVolatileDB uvdb = new UserVolatileDB("database.csv");
-        uvdb.addUser(new User("dollodart", "password", "david", "ollodart"));
-        uvdb.addUser(new User("wsingleton", "password", "wezley", "singleton"));
-        uvdb.writePersistent("database.csv");
-        */
+        // add records to database (doesn't check for or remove duplicates)
+        //UserVolatileDB uvdb = new UserVolatileDB("database.csv");
+        //uvdb.addUser(new User("dollodart", "password", "david", "ollodart"));
+        //uvdb.addUser(new User("wsingleton", "password", "wezley", "singleton"));
+        //uvdb.writePersistent("database.csv");
+
 
         /*
         UserVolatileDB uvdb = new UserVolatileDB("database.csv");
