@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class UserRepository implements CrudRepository<AppUser> {
 
     private File dataSource;
+    public UserRepository() {
+        dataSource = new File("src/main/resources/data.txt");
+    }
 
     @Override
     public AppUser findById(int id) {
@@ -17,7 +20,6 @@ public class UserRepository implements CrudRepository<AppUser> {
     }
 
     public AppUser findByUserCredentials(String username, String password) {
-        dataSource = new File("src/main/resources/data.txt");
 
         try (Scanner reader = new Scanner(dataSource).useDelimiter(":")) {
 
@@ -52,7 +54,6 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     @Override
     public AppUser save(AppUser newUser) {
-        dataSource = new File("src/main/resources/data.txt");
 
         try {
             FileWriter writer = new FileWriter(dataSource, true);
