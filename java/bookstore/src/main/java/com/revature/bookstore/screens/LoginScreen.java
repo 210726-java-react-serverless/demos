@@ -20,8 +20,8 @@ public class LoginScreen extends Screen {
         System.out.print("Please enter your Password: ");
         String password = consoleReader.readLine();
 
-//        UserService us = new UserService(userRepos);
-//        UserService.login(userName, password);
+        UserService us = new UserService();
+        us.login(userName, password);
 
         System.out.println("Screen under construction, sending you back to the Welcome Screen.");
         router.navigate("/welcome");

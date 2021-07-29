@@ -4,9 +4,9 @@ import com.revature.bookstore.exceptions.InvalidRequestException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class UserService {
@@ -16,6 +16,7 @@ public class UserService {
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
+    public UserService() { this.userRepo = null; }
 
     public AppUser register(AppUser newUser) {
 
@@ -34,15 +35,20 @@ public class UserService {
         String userName = username;
         String passWord = password;
 
-        File file = new File("main/src/java/resources/data.txt");
+        File file = new File("src/main/resources/data.txt");
         try {
             //Scanner opens and reads file
-            Scanner read = new Scanner(file);
+            Scanner read = new Scanner(file).useDelimiter(":");
 
             //count the lines
             int numOfLines = 0;
             while (read.hasNextLine()) {
                 numOfLines++;
+                try {
+                    read.nextLine();
+                } catch(NoSuchElementException nsee) {
+                    break;
+                }
             }
 
             for(int i=0; i<numOfLines; i++) {
@@ -54,6 +60,7 @@ public class UserService {
                     }
                 }
             }
+            read.close();
             if (grantAccess = true) {
                 System.out.println("Access Granted.");
                 //TODO make an actual link to the dashboard
@@ -61,7 +68,7 @@ public class UserService {
                 System.out.println("The username or password you entered is wrong.");
             }
 
-        } catch (FileNotFoundException fnfe) {
+        } catch ( FileNotFoundException fnfe) {
             System.out.println("404, file not found");
         }
 
