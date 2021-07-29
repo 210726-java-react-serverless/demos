@@ -1,50 +1,49 @@
 package com.revature.bookstore.screens;
 
-public class RegisterScreen extends Screen{
 
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
+import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.services.UserService;
+import com.revature.bookstore.util.ScreenRouter;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+import java.io.BufferedReader;
 
-    public String getUsername() {
-        return username;
-    }
+public class RegisterScreen extends Screen {
 
-    public String getPassword() {
-        return password;
-    }
+    private final UserService userService;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public RegisterScreen(String name, String route) {
-        super(name, route);
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
+        super("RegisterScreen", "/register", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override
     public void render() throws Exception {
+        System.out.println("\nRegister for a new account!");
+
+        System.out.print("First name: ");
+        String firstName = consoleReader.readLine();
+
+        System.out.print("Last name: ");
+        String lastName = consoleReader.readLine();
+
+        System.out.print("Email: ");
+        String email = consoleReader.readLine();
+
+        System.out.print("Username: ");
+        String username = consoleReader.readLine();
+
+        System.out.print("Password: ");
+        String password = consoleReader.readLine();
+
+        AppUser newUser = new AppUser(firstName, lastName, email, username, password);
+
+        System.out.println(newUser);
+        router.navigate("/welcome");
+
+        userService.register(newUser);
+
 
     }
+
+
 }

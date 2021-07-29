@@ -13,4 +13,16 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+<<<<<<< HEAD
+=======
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+>>>>>>> 846980801a1c42168f47cf961a68229b941ed89f
 </project>
