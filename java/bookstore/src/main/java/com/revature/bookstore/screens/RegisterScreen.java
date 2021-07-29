@@ -26,15 +26,27 @@ public class RegisterScreen extends Screen {
 
     }
     public void render() {
+
+        User user = null; // this null case should never be used
+        do {
         username = repeated_ask("Input username> ");
-        password = repeated_ask("Input password> ");
-        // password_validated = repeated_ask("Input password again");
+        user = database.findUser(username);
+        if (user != null) System.out.println("Username already taken.");}
+        while (user != null);
+
+        String password_validated = null;
+        do {
+            password = repeated_ask("Input password> ");
+            password_validated = repeated_ask("Input password again");
+            if (!password_validated.equals(password)) System.out.println("Passwords don't match.");
+        } while (!password_validated.equals(password));
+
         firstname = repeated_ask("Input first name> ");
         lastname = repeated_ask("Input last name> ");
-        // User user = new User(username, password, firstname, lastname);
-    }
+        String confirm = repeated_ask("above is all right? [Y/n]");
+        if (confirm.equals("n")) render();
 
-    public void close() {
+        database.addUser(new User(username, password, firstname, lastname));
 
     }
 }

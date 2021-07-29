@@ -2,6 +2,7 @@ package com.revature.bookstore.screens;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import com.revature.bookstore.model.UserVolatileDB;
 
 public abstract class Screen {
 
@@ -9,6 +10,8 @@ public abstract class Screen {
 
     protected String name;
     protected String route;
+
+    protected UserVolatileDB database = new UserVolatileDB("database.csv");
 
     public Screen(String name, String route) {
         this.name = name;
@@ -26,9 +29,12 @@ public abstract class Screen {
     public abstract void render();
 
     public void closeBuffer() {
-	try {
+    database.writePersistent("database.csv");
+    // note: this will overwrite database if it it wasn't initialized with the file
+    try {
 	    consoleReader.close();
 	} catch (java.io.IOException ioe) {
 	    System.out.println("couldn't print to system");}
     }
+
 }
