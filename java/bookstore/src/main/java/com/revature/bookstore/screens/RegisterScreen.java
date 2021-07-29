@@ -1,7 +1,5 @@
 package com.revature.bookstore.screens;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import java.io.*;
 import java.sql.SQLOutput;
 
@@ -13,32 +11,16 @@ public class RegisterScreen extends Screen {
         this.parent = parentScreen;
     }
 
-
     @Override
     public void render() {
 
-        String menu = "\nEnter your registration details\n";
+        String menu = "\nEnter your registration details...\n";
         System.out.print(menu);
-
-        System.out.print("Enter username: ");
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         String username = "", password = "", firstname = "", lastname = "";
 
-        try {
-            username = consoleReader.readLine();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-
-        System.out.print("Enter password: ");
-        try {
-            password = consoleReader.readLine();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-
         System.out.print("Enter first name: ");
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         try {
             firstname = consoleReader.readLine();
         } catch (IOException ioe) {
@@ -52,19 +34,34 @@ public class RegisterScreen extends Screen {
             ioe.printStackTrace();
         }
 
-        System.out.println("You have completed registration");
+        System.out.print("Enter username: ");
+        try {
+            username = consoleReader.readLine();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        System.out.print("Enter password: ");
+        try {
+            password = consoleReader.readLine();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        System.out.println("You have completed the registration!");
 
         FileOutputStream fos = null;
         try{
-            File file = new File("./registrationDetails.txt");
+            File file = new File("registrationDetails.txt");
             fos = new FileOutputStream(file);
-            System.out.println("Created successfully "+ file.getAbsolutePath());
 
-            String output = username + "\n" + password + "\n" + firstname + "\n" + lastname;
+            String output =  firstname + "\n" + lastname + "\n" + username + "\n" + password;
             char[] charArr = output.toCharArray();
             for(char c : charArr){
                 fos.write(c);
             }
+
+            System.out.println("File saved successfully at "+ file.getAbsolutePath());
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -78,8 +75,7 @@ public class RegisterScreen extends Screen {
             }
         }
 
-
-        System.out.print("Press '1' to return: ");
+        System.out.print("Press '1' to return to the previous menu: ");
         try{
             String userSelection = consoleReader.readLine();
 
@@ -90,14 +86,6 @@ public class RegisterScreen extends Screen {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
-
-
-
-
-
-
-
 
     }
 }
