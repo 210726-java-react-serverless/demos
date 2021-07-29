@@ -1,17 +1,18 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.util.ScreenRouter;
+
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen() {
-        super("WelcomeScreen", "/welcome");
+    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
+        super("WelcomeScreen", "/welcome", consoleReader, router);
+        System.out.println("WelcomeScreen instantiated!");
     }
 
     @Override
-    public void render() {
+    public void render() throws Exception {
 
         String menu = "\nWelcome to RevaBooks!\n" +
                       "1) Login\n" +
@@ -21,25 +22,23 @@ public class WelcomeScreen extends Screen {
 
         System.out.print(menu);
 
-//        InputStreamReader consoleInputReader = new InputStreamReader(System.in);
-//        BufferedReader consoleReader = new BufferedReader(consoleInputReader);
+        String userSelection = consoleReader.readLine();
 
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        switch (userSelection) {
 
-        try {
-            String userSelection = consoleReader.readLine();
-            System.out.println(userSelection); // if an exception is thrown this will not be executed
-        } catch (IOException ioe) {
-            System.err.println("An IOException was thrown...");
-        } finally {
-            System.out.println("This will run regardless of whether or not an exception is thrown.");
-
-            // TODO clean up this ugly garbage!
-            try {
-                consoleReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            case "1":
+                router.navigate("/login");
+                break;
+            case "2":
+                router.navigate("/register");
+                break;
+            case "3":
+                System.out.println("Exiting application...");
+                // figure a way to make the app shutdown
+                // TODO this is ugly and bad practice, we will fix it later
+                System.exit(0);
+            default:
+                System.out.println("You provided an invalid value, please try again.");
 
         }
 
