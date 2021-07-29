@@ -28,9 +28,9 @@ public class AppUser {
         long x = 0;
          for(int i = 0 ; i < username.length(); i++ )
          {
-              x += (Math.pow(2 , i)) * username.CharAt(i);
+              x += (Math.pow(2 , i)) * username.charAt(i);
          }
-         this.id = x; 
+         this.id = (int)x;
         }
 
     public String getFirstName() {
@@ -100,9 +100,7 @@ public class AppUser {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, username, password);
-    }
+    public int hashCode() { return Objects.hash(id, firstName, lastName, email, username, password); }
 
     @Override
     public String toString() {
