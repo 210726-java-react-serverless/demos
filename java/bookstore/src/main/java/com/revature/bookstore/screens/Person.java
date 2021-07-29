@@ -13,15 +13,16 @@ public class Person {
 
 // portions of below code inspired by Tutorialspoint and W3 articles that I read
 
-    Person(String LN,String FN,String UN, String PW){
-        this.lastname = LN;
-        this.firstname = FN;
-        this.username = UN;
-        this.password = PW;
+    Person(){
+        //this.lastname = LN;
+        //this.firstname = FN;
+        //this.username = UN;
+        //this.password = PW;
     }
-    
 
-    public void Render(){
+
+    public static void Render() throws IOException {
+        System.out.println("Lets get you registered");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Enter your last name: ");
@@ -56,13 +57,15 @@ public class Person {
             ioe.printStackTrace();
         }
 
-        ArrayList<String> registrant = new ArrayList<String>();
-        registrant.add(lastname);
-        registrant.add(firstname);
-        registrant.add(username);
-        registrant.add(password);
+        reader.close();
 
-        System.out.println(registrant);
+        //ArrayList<String> registrant = new ArrayList<String>();
+        //registrant.add(lastname);
+        //registrant.add(firstname);
+        //registrant.add(username);
+        //registrant.add(password);
+
+        //System.out.println(registrant);
 
 
 

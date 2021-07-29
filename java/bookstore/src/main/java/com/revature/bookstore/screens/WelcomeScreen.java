@@ -31,15 +31,20 @@ public class WelcomeScreen extends Screen {
             System.out.println(userSelection); // if an exception is thrown this will not be executed
 
             if(userSelection.equals("2")) {
-                RegistrationScreen.render();
+                Person.Render();
+            }if(userSelection.equals("3")){
+                System.out.println("Goodbye");
+            }
+            else {
+                System.out.println("Page is under construction, but we can register you today");
             }
                 RegistrationScreen register = new RegistrationScreen();
                 register.render();
 
         } catch (IOException ioe) {
             System.err.println("An IOException was thrown...");
-        } finally {
-            System.out.println("This will run regardless of whether or not an exception is thrown.");
+        } //finally {
+            //System.out.println("This will run regardless of whether or not an exception is thrown.");
 
             // TODO clean up this ugly garbage!
             try {
@@ -53,4 +58,4 @@ public class WelcomeScreen extends Screen {
 
 
     }
-}
+
