@@ -1,4 +1,4 @@
-package com.revature.bookstore.screens.Util;
+package com.revature.bookstore.screens.util;
 
 import com.revature.bookstore.screens.Screen;
 
@@ -27,4 +27,5 @@ public class ScreenRouter {
     public Screen getCurrentScreen() {
         return currentScreen;
     }
+}
 

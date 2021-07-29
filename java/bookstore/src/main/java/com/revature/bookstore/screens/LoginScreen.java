@@ -1,8 +1,10 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.screens.util.ScreenRouter;
+
 import java.io.BufferedReader;
 
-public class LoginScreen extends Screen{
+public class LoginScreen extends Screen {
 
     public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("LoginScreen", "/login", consoleReader, router);
@@ -15,3 +17,4 @@ public class LoginScreen extends Screen{
         router.navigate("/welcome");
 
     }
+}

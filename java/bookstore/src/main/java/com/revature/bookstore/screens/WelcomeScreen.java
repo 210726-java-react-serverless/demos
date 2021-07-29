@@ -1,12 +1,14 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.screens.util.ScreenRouter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen() {
+    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("WelcomeScreen", "/welcome");
     }
 

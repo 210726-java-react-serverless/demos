@@ -1,7 +1,6 @@
 package com.revature.bookstore;
 
-import com.revature.bookstore.screens.Util.AppState;
-import com.revature.bookstore.screens.WelcomeScreen;
+import com.revature.bookstore.screens.util.AppState;
 
 public class App {
 

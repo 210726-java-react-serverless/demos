@@ -1,9 +1,8 @@
 package com.revature.bookstore.screens;
 
-import com.revature.bookstore.screens.Util.ScreenRouter;
+import com.revature.bookstore.screens.util.ScreenRouter;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 
 public abstract class Screen {
 

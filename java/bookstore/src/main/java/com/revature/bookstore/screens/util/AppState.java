@@ -1,12 +1,16 @@
-package com.revature.bookstore.screens.Util;
+package com.revature.bookstore.screens.util;
 
+import com.revature.bookstore.screens.DashboardScreen;
+import com.revature.bookstore.screens.LoginScreen;
+import com.revature.bookstore.screens.RegisterScreen;
 import com.revature.bookstore.screens.WelcomeScreen;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class AppState {
-    private boolean appRunning;
+
+    private final boolean appRunning;
     private final ScreenRouter router;
 
     public AppState() {
@@ -34,8 +38,6 @@ public class AppState {
         }
 
     }
-
-}
 
 }
 

@@ -1,8 +1,10 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.screens.util.ScreenRouter;
+
 import java.io.BufferedReader;
 
-public class RegisterScreen extends Screen{
+public class RegisterScreen extends Screen {
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("RegisterScreen", "/register", consoleReader, router);
@@ -31,6 +33,8 @@ public class RegisterScreen extends Screen{
 
         System.out.println(newUser);
         router.navigate("/welcome");
+    }
+}
 
         // TODO validate that provided information is correct
         // TODO persist new user to some data source
