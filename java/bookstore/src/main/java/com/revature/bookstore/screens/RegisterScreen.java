@@ -1,6 +1,7 @@
 package com.revature.bookstore.screens;
 
 import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.services.UserService;
 import com.revature.bookstore.util.ScreenRouter;
 
 import javax.imageio.IIOException;
@@ -11,23 +12,30 @@ import java.io.PrintWriter;
 
 public class RegisterScreen extends Screen {
 
-    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router) {
+    private UserService userService;
+
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
+
         super("RegisterScreen", "/register", consoleReader, router);
+
+        this.userService=userService;
     }
 
     @Override
     public void render() throws Exception {
         String user = tryParse("Enter username\n> ");
-        toFile(user);
-        String pass = tryParse("Enter password\n> ");
-        toFile(pass);
-        String firstName = tryParse("Enter first name\n> ");
-        toFile(firstName);
-        String lastName = tryParse("Enter last name\n> ");
-        toFile(lastName);
-        toFile("\n");
 
-        AppUser newUser = new AppUser(user,pass,firstName,lastName);
+        String pass = tryParse("Enter password\n> ");
+
+        String email = tryParse("Enter email\n> ");
+
+        String firstName = tryParse("Enter first name\n> ");
+
+        String lastName = tryParse("Enter last name\n> ");
+
+        AppUser newUser = new AppUser(user,pass, email,firstName,lastName);
+
+        userService.register(newUser);
 
     }
     public String tryParse(String prompt){

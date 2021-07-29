@@ -3,16 +3,28 @@ package com.revature.bookstore.models;
 import java.util.Objects;
 
 public class AppUser {
+
+    private int id;
     private String username;
     private String password;
+    private String email;
     private String firstName;
     private String lastName;
 
-    public AppUser(String username, String password, String firstName, String lastName) {
+    public AppUser(String username, String password, String email, String firstName, String lastName) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getUsername() {
@@ -29,6 +41,14 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -52,9 +72,22 @@ public class AppUser {
         return "AppUser{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    public String toFile(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(id).append(":")
+                .append(username).append(":")
+                .append(password).append(":")
+                .append(email).append(":")
+                .append(firstName).append(":")
+                .append(lastName);
+
+        return builder.toString();
     }
 
     @Override
@@ -62,11 +95,15 @@ public class AppUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password) && Objects.equals(firstName, appUser.firstName) && Objects.equals(lastName, appUser.lastName);
+        return Objects.equals(username, appUser.username)
+                && Objects.equals(password, appUser.password)
+                && Objects.equals(email, appUser.email)
+                && Objects.equals(firstName, appUser.firstName)
+                && Objects.equals(lastName, appUser.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, firstName, lastName);
+        return Objects.hash(username, password, email, firstName, lastName);
     }
 }
