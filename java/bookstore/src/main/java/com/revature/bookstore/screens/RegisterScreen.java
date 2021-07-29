@@ -1,14 +1,18 @@
 package com.revature.bookstore.screens;
 
 import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.services.UserService;
 import com.revature.bookstore.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
 public class RegisterScreen extends Screen {
 
-    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router) {
+    private final UserService userService;
+
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override
@@ -35,8 +39,7 @@ public class RegisterScreen extends Screen {
         System.out.println(newUser);
         router.navigate("/welcome");
 
-        // TODO validate that provided information is correct
-        // TODO persist new user to some data source
+        userService.register(newUser);
 
 
     }

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class AppUser {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -16,6 +17,14 @@ public class AppUser {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -58,12 +67,26 @@ public class AppUser {
         this.password = password;
     }
 
+    public String toFile() {
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(id).append(":")
+               .append(firstName).append(":")
+               .append(lastName).append(":")
+               .append(email).append(":")
+               .append(username).append(":")
+               .append(password);
+
+        return builder.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return Objects.equals(firstName, appUser.firstName)
+        return id == appUser.id
+                && Objects.equals(firstName, appUser.firstName)
                 && Objects.equals(lastName, appUser.lastName)
                 && Objects.equals(email, appUser.email)
                 && Objects.equals(username, appUser.username)
@@ -72,13 +95,14 @@ public class AppUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, username, password);
+        return Objects.hash(id, firstName, lastName, email, username, password);
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
