@@ -20,7 +20,7 @@ public class UserRepository implements CrudRepository<AppUser> {
         dataSource = new File("src/main/resources/data.txt");
         try {
             FileWriter writer = new FileWriter(dataSource, true);
-            newUser.setId(iterator);   // TODO this will need to be fixed, as all users will otherwise have the same id
+            newUser.setId(iterator);   // Id is iterated every time a new
             writer.write(newUser.toFile());
             writer.close();
         } catch (Exception e) {
@@ -32,11 +32,11 @@ public class UserRepository implements CrudRepository<AppUser> {
         for (int i = 0; i < newUserArray.length; i++) {
             if (i == users.length) {
                 newUserArray[i] = newUser;
+                break;
             }
             newUserArray[i] = users[i];
         }
         users = newUserArray;
-//        users.asList().contains();
 
         return newUser;
     }

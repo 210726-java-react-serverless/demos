@@ -28,8 +28,8 @@ public class UserService {
         users = userRepo.getUsers();
 
         for (int i = 0; i < users.length; i++) {
-            if (users[i].getUsername() == username) {
-                if (users[i].getPassword() == password) {
+            if (users[i].getUsername().equals(username)) {
+                if (users[i].getPassword().equals(password)) {
                     System.out.println("Access Granted.");
                 }
                 else System.out.println("The FBI is on to you");
