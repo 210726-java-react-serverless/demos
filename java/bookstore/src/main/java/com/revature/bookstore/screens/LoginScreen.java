@@ -11,8 +11,10 @@ public class LoginScreen extends Screen {
     }
 
     @Override
-    public void render() {
+    public void render() throws Exception {
         System.out.println("LoginScreen works!");
+        System.out.println("Screen under construction, sending you back to the Welcome Screen.");
+        router.navigate("/welcome");
     }
 
 }

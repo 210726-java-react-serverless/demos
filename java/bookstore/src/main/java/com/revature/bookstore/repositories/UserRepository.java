@@ -22,12 +22,13 @@ public class UserRepository implements CrudRepository<AppUser> {
             newUser.setId(1);
             writer.write(newUser.toFile());
             writer.close();
+            
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
-        return null;
+        return newUser;
     }
 
     @Override
@@ -39,4 +40,5 @@ public class UserRepository implements CrudRepository<AppUser> {
     public boolean deleteById(int id) {
         return false;
     }
+
 }

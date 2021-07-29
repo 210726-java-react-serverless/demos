@@ -12,13 +12,10 @@ public class DashboardScreen extends Screen {
     }
 
     @Override
-    public void render() {
-        try {
-            consoleReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void render() throws Exception {
         System.out.println("DashboardScreen works!");
+        System.out.println("Screen under construction, sending you back to the Welcome Screen.");
+        router.navigate("/welcome");
     }
 
 }

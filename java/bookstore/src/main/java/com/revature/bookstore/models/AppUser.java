@@ -47,45 +47,15 @@ public class AppUser {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String toFile() {
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "AppUser{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-
-    public String toFile(){
         StringBuilder builder = new StringBuilder();
         builder.append(id).append(":")
-                .append(username).append(":")
-                .append(password).append(":")
-                .append(email).append(":")
-                .append(firstName).append(":")
-                .append(lastName);
+               .append(firstName).append(":")
+               .append(lastName).append(":")
+               .append(email).append(":")
+               .append(username).append(":")
+               .append(password);
 
         return builder.toString();
     }
@@ -94,16 +64,32 @@ public class AppUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         AppUser appUser = (AppUser) o;
-        return Objects.equals(username, appUser.username)
-                && Objects.equals(password, appUser.password)
-                && Objects.equals(email, appUser.email)
+
+        return id == appUser.id
                 && Objects.equals(firstName, appUser.firstName)
-                && Objects.equals(lastName, appUser.lastName);
+                && Objects.equals(lastName, appUser.lastName)
+                && Objects.equals(email, appUser.email)
+                && Objects.equals(username, appUser.username)
+                && Objects.equals(password, appUser.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, email, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, email, username, password);
     }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
 }

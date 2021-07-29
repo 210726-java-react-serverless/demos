@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 1:colby:pass:colby.wall@rev.net:colby:wall
+=======
+1:Wezley:Singleton:wezley.singleton@revature.com:wsingleton:password
+>>>>>>> 846980801a1c42168f47cf961a68229b941ed89f
