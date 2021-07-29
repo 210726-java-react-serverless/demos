@@ -18,7 +18,8 @@ public class Person {
             String lastname = reader.readLine();
         } catch (IOException ioe){
             System.out.println("Exception raised");
-            ioe.printStackTrace();
+            //commented out StackTraces because of lengthy outputs
+            //ioe.printStackTrace();
         }
 
         System.out.println("Enter your first name: ");
@@ -26,7 +27,7 @@ public class Person {
             String firstname = reader.readLine();
         } catch (IOException ioe){
             System.out.println("Exception raised");
-            ioe.printStackTrace();
+            //ioe.printStackTrace();
         }
 
         System.out.println("Enter your user name: ");
@@ -34,7 +35,7 @@ public class Person {
             String username = reader.readLine();
         } catch (IOException ioe){
             System.out.println("Exception raised");
-            ioe.printStackTrace();
+            //ioe.printStackTrace();
         }
 
         System.out.println("Enter your password: ");
@@ -42,7 +43,7 @@ public class Person {
             String password = reader.readLine();
         } catch (IOException ioe){
             System.out.println("Exception raised");
-            ioe.printStackTrace();
+            //ioe.printStackTrace();
         }
 
         reader.close();
