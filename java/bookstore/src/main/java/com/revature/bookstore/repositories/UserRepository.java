@@ -2,8 +2,7 @@ package com.revature.bookstore.repositories;
 
 import com.revature.bookstore.models.AppUser;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 public class UserRepository implements CrudRepository<AppUser> {
 
@@ -12,6 +11,25 @@ public class UserRepository implements CrudRepository<AppUser> {
     @Override
     public AppUser findById(int id) {
         return null;
+    }
+
+
+    public boolean findByName(String username, String password) {
+        dataSource = new File("src/main/resources/data.txt");
+        try (
+                BufferedReader reader = new BufferedReader(new FileReader(dataSource));
+        ) {
+            String line = reader.readLine();
+            while (line != null) {
+                String[] splittedLine = line.split(":");
+                if ((splittedLine[4].equals(username)))
+                    if ((splittedLine[5].equals(password)))
+                        return true;
+                line=reader.readLine();
+            } return false;
+        } catch (IOException e) {
+            System.err.print("Exception thrown from file search.");
+        } return false;
     }
 
     @Override
