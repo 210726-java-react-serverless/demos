@@ -1,17 +1,19 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.util.ScreenRouter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen(BufferedReader consoleReader) {
-        super("WelcomeScreen", "/welcome", consoleReader);
+    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
+        super("WelcomeScreen", "/welcome", consoleReader, router);
     }
 
     @Override
-    public void render() {
+    public void render() throws Exception {
 
         String menu = "\nWelcome to RevaBooks!\n" +
                       "1) Login\n" +
@@ -21,13 +23,19 @@ public class WelcomeScreen extends Screen {
 
         System.out.print(menu);
 
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-
-        try {
-            String userSelection = consoleReader.readLine();
-            System.out.println(userSelection); // if an exception is thrown this will not be executed
-        } catch (IOException ioe) {
-            System.err.println("An IOException was thrown...");
+        String userInput = consoleReader.readLine();
+        switch(userInput){
+            case "1":
+                //login
+                break;
+            case "2":
+                router.navigate("/register");
+                break;
+            case "3":
+                System.out.println("Exiting application");
+                System.exit(0);
+            default:
+                System.out.println("Input was invalid");
         }
 
     }
