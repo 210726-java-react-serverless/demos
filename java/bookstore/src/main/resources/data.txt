@@ -1,1 +1,2 @@
 1:Wezley:Singleton:wezley.singleton@revature.com:wsingleton:password
+2:Marwan:Bataineh:marwan.bataineh@revature.net:batainem:password
