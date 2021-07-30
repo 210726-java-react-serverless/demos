@@ -1,11 +1,11 @@
 package com.revature.bookstore;
 
-import com.revature.bookstore.screens.WelcomeScreen;
+import com.revature.bookstore.util.AppState;
 
 public class App {
 
     public static void main(String[] args) {
-		WelcomeScreen welcomeScreen = new WelcomeScreen();
-		welcomeScreen.render();
+	AppState app = new AppState();
+	app.startup();
     }
 }
