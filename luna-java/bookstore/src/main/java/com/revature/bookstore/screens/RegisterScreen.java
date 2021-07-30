@@ -3,12 +3,15 @@ package com.revature.bookstore.screens;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.services.UserService;
 import com.revature.bookstore.util.ScreenRouter;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
+
 
 public class RegisterScreen extends Screen {
 
     private final UserService userService;
+    private final Logger logger = LogManager.getLogger(RegisterScreen.class);
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
@@ -39,7 +42,17 @@ public class RegisterScreen extends Screen {
         System.out.println(newUser);
         router.navigate("/welcome");
 
-        userService.register(newUser);
+
+
+        try {
+            userService.register(newUser);
+            logger.info("User successfully registered!");
+            router.navigate("/dashboard");
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            logger.debug("User not registered!");
+            router.navigate("/welcome");
+        }
 
 
     }
