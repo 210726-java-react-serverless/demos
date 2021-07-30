@@ -1,4 +1,4 @@
-package com.revature.bookstore.screens.util;
+package com.revature.bookstore.util;
 
 import com.revature.bookstore.screens.DashboardScreen;
 import com.revature.bookstore.screens.LoginScreen;
