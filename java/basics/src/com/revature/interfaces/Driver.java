@@ -47,7 +47,7 @@ public class Driver {
         List<String> newList = list.stream()
                                     .filter(i -> i % 2 == 0) // filter is an intermediate operation; returns a Stream
                                     .map(i -> "test" + i) // map is another intermediate operation
-                                    .collect(Collectors.toList());
+                                    .collect(Collectors.toList()); // collect is a terminal operation; it does not return a Stream
 
         System.out.println(list); // the original stream source stays unaffected
 
