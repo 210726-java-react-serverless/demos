@@ -13,6 +13,8 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+<<<<<<< HEAD
+=======
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -22,4 +24,5 @@
         </dependency>
     </dependencies>
 
+>>>>>>> 846980801a1c42168f47cf961a68229b941ed89f
 </project>

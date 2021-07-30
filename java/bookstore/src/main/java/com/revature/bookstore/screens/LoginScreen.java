@@ -1,13 +1,39 @@
 package com.revature.bookstore.screens;
 
+
 import com.revature.bookstore.repositories.UserRepository;
+
 import com.revature.bookstore.util.ScreenRouter;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class LoginScreen extends Screen {
+public class LoginScreen extends Screen{
+
+
+    public LoginScreen(String name, String route) {
+        super(name, route);
+    }
+
+    private String loginUsername;
+    private String loginPassword;
+
+    public String getLoginUsername() {
+        return loginUsername;
+    }
+
+    public void setLoginUsername(String loginUsername) {
+        this.loginUsername = loginUsername;
+    }
+
+    public String getLoginPassword() {
+        return loginPassword;
+    }
+
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
+    }
 
     public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("LoginScreen", "/login", consoleReader, router);
@@ -15,6 +41,7 @@ public class LoginScreen extends Screen {
 
     @Override
     public void render() throws Exception {
+
         UserRepository repo = new UserRepository();
         try{
             BufferedReader stream  = new BufferedReader(new InputStreamReader(System.in));
@@ -41,4 +68,6 @@ public class LoginScreen extends Screen {
 
     }
 
+
+    }
 }

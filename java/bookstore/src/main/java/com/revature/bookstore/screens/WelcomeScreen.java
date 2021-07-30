@@ -1,26 +1,34 @@
 package com.revature.bookstore.screens;
 
+
 import com.revature.bookstore.util.ScreenRouter;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import jdk.internal.util.xml.impl.Input;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class WelcomeScreen extends Screen {
 
     public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("WelcomeScreen", "/welcome", consoleReader, router);
         System.out.println("WelcomeScreen instantiated!");
+
     }
 
     @Override
     public void render() throws Exception {
 
-        String menu = "\nWelcome to RevaBooks!\n" +
-                      "1) Login\n" +
-                      "2) Register\n" +
-                      "3) Exit application\n" +
-                      "> ";
+        String menu = "\nWelcome to RevaBooks!\n"+
+                "1. Login\n" +
+                "2. Register\n" +
+                "3. Exit Application\n" +
+                "> ";
+        System.out.println(menu);
 
-        System.out.print(menu);
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         String userSelection = consoleReader.readLine();
 
@@ -39,6 +47,7 @@ public class WelcomeScreen extends Screen {
                 System.exit(0);
             default:
                 System.out.println("You provided an invalid value, please try again.");
+
 
         }
 
