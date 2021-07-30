@@ -5,7 +5,6 @@ import com.revature.bookstore.util.ScreenRouter;
 import java.io.BufferedReader;
 
 public class WelcomeScreen extends Screen {
-
     public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("WelcomeScreen", "/welcome", consoleReader, router);
         System.out.println("WelcomeScreen instantiated!");
@@ -13,7 +12,6 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-
         String menu = "\nWelcome to RevaBooks!\n" +
                       "1) Login\n" +
                       "2) Register\n" +
@@ -21,11 +19,9 @@ public class WelcomeScreen extends Screen {
                       "> ";
 
         System.out.print(menu);
-
         String userSelection = consoleReader.readLine();
 
-        switch (userSelection) {
-
+        switch(userSelection) {
             case "1":
                 router.navigate("/login");
                 break;

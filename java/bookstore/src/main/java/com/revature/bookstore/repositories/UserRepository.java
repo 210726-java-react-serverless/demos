@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class UserRepository implements CrudRepository<AppUser> {
-
     private File dataSource;
 
     @Override
@@ -19,17 +18,15 @@ public class UserRepository implements CrudRepository<AppUser> {
         dataSource = new File("src/main/resources/data.txt");
 
         try {
-            FileWriter writer = new FileWriter(dataSource);
-            newUser.setId(1); // TODO this will need to be fixed, as all users will have the same id.
-            writer.write(newUser.toFile());
+            FileWriter writer = new FileWriter(dataSource, true);
+            newUser.setId(2);
+            writer.append(newUser.toFile());
             writer.flush();
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return newUser;
-
     }
 
     @Override

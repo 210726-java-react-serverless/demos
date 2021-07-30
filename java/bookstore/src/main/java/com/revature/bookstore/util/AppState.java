@@ -24,9 +24,8 @@ public class AppState {
         UserRepository userRepo = new UserRepository();
         UserService userService = new UserService(userRepo);
 
-
         router.addScreen(new WelcomeScreen(consoleReader, router))
-              .addScreen(new LoginScreen(consoleReader, router))
+              .addScreen(new LoginScreen(consoleReader, router, userService))
               .addScreen(new RegisterScreen(consoleReader, router, userService))
               .addScreen(new DashboardScreen(consoleReader, router));
 

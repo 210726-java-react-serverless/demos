@@ -5,7 +5,6 @@ import com.revature.bookstore.util.ScreenRouter;
 import java.io.BufferedReader;
 
 public abstract class Screen {
-
     protected String name;
     protected String route;
     protected BufferedReader consoleReader;

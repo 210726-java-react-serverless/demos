@@ -4,6 +4,11 @@ import com.revature.bookstore.exceptions.InvalidRequestException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.List;
+
 public class UserService {
 
     private final UserRepository userRepo;
@@ -13,17 +18,39 @@ public class UserService {
     }
 
     public AppUser register(AppUser newUser) {
-
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid user data provided!");
         }
-
         return userRepo.save(newUser);
-
     }
 
-    public AppUser login(String username, String password) {
-        return null;
+    public boolean login(String username, String password) {
+        File file = new File("src/main/resources/data.txt");
+
+        try {
+            BufferedReader fileReader = new BufferedReader(new FileReader(file));
+
+            String str;
+            while ((str = fileReader.readLine()) != null) {
+                if (isUserValid(str, username, password)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    private boolean isUserValid(String data, String username, String password) {
+        String[] tokens = data.split(":");
+
+        if (tokens[4].equals(username) && tokens[5].equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean isUserValid(AppUser user) {
