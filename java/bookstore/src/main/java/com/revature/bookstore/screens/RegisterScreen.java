@@ -36,10 +36,18 @@ public class RegisterScreen extends Screen {
 
         AppUser newUser = new AppUser(firstName, lastName, email, username, password);
 
-        router.navigate("/welcome");
 
-        userService.register(newUser);
-        System.out.println(newUser);
+        // TODO replace the below souts with proper logging (to a file)
+        try {
+            userService.register(newUser);
+            System.out.println("User successfully registered!");
+            router.navigate("/dashboard");
+        } catch (Exception e) {
+            System.out.println("User not registered!");
+            router.navigate("/welcome");
+        }
+
+
 
     }
 
