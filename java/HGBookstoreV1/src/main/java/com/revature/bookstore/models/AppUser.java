@@ -70,11 +70,11 @@ public class AppUser {
     public String toFile() {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("\n").append(id).append(":")
-               .append(firstName).append(":")
-               .append(lastName).append(":")
-               .append(email).append(":")
-               .append(username).append(":")
+        builder.append("\n").append(id).append("\n")
+               .append(firstName).append("\n")
+               .append(lastName).append("\n")
+               .append(email).append("\n")
+               .append(username).append("\n")
                .append(password);
 
         return builder.toString();

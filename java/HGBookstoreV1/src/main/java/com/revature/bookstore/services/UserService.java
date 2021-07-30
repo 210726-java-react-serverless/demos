@@ -32,25 +32,21 @@ public class UserService {
 
         boolean grantAccess = false;
 
-        String userName = username;
-        String passWord = password;
-
         File file = new File("src/main/resources/data.txt");
         try {
             //Scanner opens and reads file
-            Scanner read = new Scanner(file).useDelimiter(":");
+            Scanner read = new Scanner(file);
 
             //count the lines
             int numOfLines = 0;
             while (read.hasNextLine()) {
                 numOfLines++;
                 read.nextLine();
-                System.out.println("New line found: " + numOfLines);
             }
             read.close();
-            Scanner checker = new Scanner(file).useDelimiter(":");
+            Scanner checker = new Scanner(file);
             for(int i=0; i<numOfLines; i++) {
-                if (checker.nextLine().equals(userName)) { // if the same user name
+                if (checker.nextLine().equals(username)) { // if the same user name
                     i++;
                     if (checker.nextLine().equals(password)) { // check password
                         grantAccess = true; // if also same, change boolean to true
@@ -59,7 +55,7 @@ public class UserService {
                 }
             }
 
-            if (grantAccess = true) {
+            if (grantAccess == true) {
                 System.out.println("Access Granted.");
                 //TODO make an actual link to the dashboard
             } else {
