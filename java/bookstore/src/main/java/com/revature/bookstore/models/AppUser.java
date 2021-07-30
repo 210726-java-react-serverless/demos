@@ -19,6 +19,11 @@ public class AppUser {
         this.password = password;
     }
 
+    public AppUser(int id, String firstName, String lastName, String email, String username, String password) {
+        this(firstName, lastName, email, username, password);
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

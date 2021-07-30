@@ -2,12 +2,35 @@ package com.revature.bookstore.repositories;
 
 import com.revature.bookstore.models.AppUser;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 public class UserRepository implements CrudRepository<AppUser> {
 
-    private File dataSource;
+    private final File userDataSource;
+
+    public UserRepository(String dataSourcePath) {
+        userDataSource = new File(dataSourcePath);
+    }
+
+    public AppUser findUserByCredentials(String username, String password) {
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(userDataSource))) {
+
+            String record;
+            while ((record = reader.readLine()) != null) {
+                String[] recordValues = record.split(":");
+                if (recordValues[4].equals(username) && recordValues[5].equals(password)) {
+                    return new AppUser(Integer.parseInt(recordValues[0]), recordValues[1], recordValues[2], recordValues[3], recordValues[4], recordValues[5]);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     @Override
     public AppUser findById(int id) {
@@ -16,14 +39,11 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     @Override
     public AppUser save(AppUser newUser) {
-        dataSource = new File("src/main/resources/data.txt");
 
-        try {
-            FileWriter writer = new FileWriter(dataSource);
-            newUser.setId(1); // TODO this will need to be fixed, as all users will have the same id.
-            writer.write(newUser.toFile());
+        try (FileWriter writer = new FileWriter(userDataSource, true)) {
+            newUser.setId(getNextId());
+            writer.write(newUser.toFile() + "\n");
             writer.flush();
-            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,6 +60,29 @@ public class UserRepository implements CrudRepository<AppUser> {
     @Override
     public boolean deleteById(int id) {
         return false;
+    }
+
+    private int getNextId() {
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(userDataSource))) {
+
+            String currentRecord, lastRecord = null;
+            while ((currentRecord = reader.readLine()) != null) {
+                lastRecord = currentRecord;
+            }
+
+            if (lastRecord == null) {
+                return 1;
+            }
+
+            return Integer.parseInt(lastRecord.split(":")[0]) + 1;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error reading file.");
+        }
+
     }
 
 }

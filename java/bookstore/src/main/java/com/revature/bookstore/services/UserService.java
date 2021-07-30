@@ -18,12 +18,20 @@ public class UserService {
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
+        // TODO validate that the provided username and email are unique (not already in the datasource)
+
         return userRepo.save(newUser);
 
     }
 
     public AppUser login(String username, String password) {
-        return null;
+
+        if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
+            throw new InvalidRequestException("Invalid user credentials provided!");
+        }
+
+        return userRepo.findUserByCredentials(username, password);
+
     }
 
     private boolean isUserValid(AppUser user) {
