@@ -1,97 +1,45 @@
 package com.revature.bookstore.screens;
 
+import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.util.ScreenRouter;
+import com.revature.bookstore.services.UserService;
 
-import java.io.*;/*
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-*/
+import java.io.BufferedReader;
 
 public class RegisterScreen extends Screen {
 
-    private String username;
-    private String password; // storing password as plaintext because we suck
+    private final UserService userService;
 
-    public RegisterScreen() {
-        super("RegisterScreen", "/register");
-        username = password = "";
-    }
-
-    public RegisterScreen(BufferedReader consoleReader) {
-        super("RegisterScreen", "/register");
-
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter r, UserService u) {
+        super("RegisterScreen", "/register", consoleReader, r);
+        this.userService = u;
     }
 
     @Override
-    public void render() {
-        System.out.println("\nEnter desired username (must have at least 5 characters\n");
-        Add_Username();
+    public void render() throws Exception {
+        System.out.println("Register for a new account!\n");
 
-        try {
-            Add_Password();
-            Write_File();
-        } catch (IOException e) {
-            System.out.println("Error with file, sad.");
-            e.printStackTrace();
-        }
-    }
+        System.out.print("First name: ");
+        String firstName = consoleReader.readLine();
 
-    private void Add_Username() {
-        Read_Username();
+        System.out.print("Last name: ");
+        String lastName = consoleReader.readLine();
 
-        while (username.length() < 5) {
-            System.err.println("Username is too short\n");
-            Read_Username();
-        }
+        System.out.print("Email: ");
+        String email = consoleReader.readLine();
 
-        for (int i = 0; i < username.length(); i++) {
-            if (!Character.isLetterOrDigit(username.charAt(i))) {
-                System.err.println("Invalid character");
-                Read_Username();
-            }
-        }
+        System.out.print("Username: ");
+        String username = consoleReader.readLine();
 
-        // FIXME: check if username is taken
-    }
+        System.out.print("Password: ");
+        String password = consoleReader.readLine();
 
-    private void Read_Username() {
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        AppUser newUser = new AppUser(firstName, lastName, email, username, password);
+        newUser.Set_ID(username.hashCode()); // FIXME: maybe add randomly generated salt
 
-        try {
-            username = consoleReader.readLine();
-            consoleReader.close();
-        } catch (IOException e) {
-            System.err.println("Error reading username");
-            e.printStackTrace();
-        }
-    }
+        System.out.println(newUser);
+        router.navigate("/welcome");
 
-    private void Add_Password() {
-        try {
-            BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-            password = consoleReader.readLine();
-            consoleReader.close();
-
-            /*MessageDigest hash = MessageDigest.getInstance("SHA-256");
-            return hash.digest(pw.getBytes(StandardCharsets.UTF_8));*/
-        }
-
-        catch (IOException e) {
-            System.err.println("Console error");
-            e.printStackTrace();
-        }
-
-        /*
-        catch (NoSuchAlgorithmException e) {
-            System.err.println("Wrong SHA");
-            e.printStackTrace();
-        }
-        */
-    }
-
-    private void Write_File() throws IOException {
-        //File credentials = new File("login.txt");
-        FileWriter write = new FileWriter("login.txt");
-        write.write(username + "\n" + password);
+        userService.Register(newUser);
     }
 }
