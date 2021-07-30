@@ -37,7 +37,7 @@ public class UserRepository implements CrudRepository<AppUser> {
         dataSource = new File("src/main/resources/data.txt");
 
         try {
-            FileWriter writer = new FileWriter(dataSource);
+            FileWriter writer = new FileWriter(dataSource,true);
             newUser.setId(1); // TODO this will need to be fixed, as all users will have the same id.
             writer.write(newUser.toFile());
             writer.flush();
