@@ -26,7 +26,7 @@ public class WelcomeScreen extends Screen {
                 "2. Register\n" +
                 "3. Exit Application\n" +
                 "> ";
-        System.out.println(menu);
+        System.out.print(menu);
 
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
