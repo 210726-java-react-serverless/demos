@@ -13,20 +13,25 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public AppUser register(AppUser newUser, int iterator) {
+    public AppUser register(AppUser newUser) {
         if (!isUserValid(newUser)) {
             // halt here, and raise a custom exception
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
-        return userRepo.save(newUser, iterator);
+        return userRepo.save(newUser);
     }
 
     public AppUser login(String username, String password) {
 
-        AppUser[] users = new AppUser[1];
+        AppUser[] users;
         users = userRepo.getUsers();
 
+        for (AppUser user : users) {
+            System.out.println(user);
+        }
+
+        if (users.length < 1) System.out.println("Username not found in system.");
         for (int i = 0; i < users.length; i++) {
             if (users[i].getUsername().equals(username)) {
                 if (users[i].getPassword().equals(password)) {
@@ -38,7 +43,6 @@ public class UserService {
             if (i == users.length - 1) {
                 System.out.println("Username not found in system.");
             }
-
         }
 
         return null;
