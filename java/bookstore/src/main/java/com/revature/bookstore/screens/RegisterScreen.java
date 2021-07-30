@@ -5,6 +5,8 @@ import com.revature.bookstore.services.UserService;
 import com.revature.bookstore.util.ScreenRouter;
 
 import java.io.BufferedReader;
+import java.util.logging.Logger;
+
 
 public class RegisterScreen extends Screen {
 
@@ -38,6 +40,9 @@ public class RegisterScreen extends Screen {
 
 
         // TODO replace the below souts with proper logging (to a file)
+
+        
+
         try {
             userService.register(newUser);
             System.out.println("User successfully registered!");
