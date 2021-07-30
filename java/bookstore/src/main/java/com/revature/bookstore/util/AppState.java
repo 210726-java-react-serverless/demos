@@ -21,12 +21,12 @@ public class AppState {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         // Create app components
-        UserRepository userRepo = new UserRepository();
+        UserRepository userRepo = new UserRepository("src/main/resources/data.txt");
         UserService userService = new UserService(userRepo);
 
 
         router.addScreen(new WelcomeScreen(consoleReader, router))
-              .addScreen(new LoginScreen(consoleReader, router))
+              .addScreen(new LoginScreen(consoleReader, router, userService))
               .addScreen(new RegisterScreen(consoleReader, router, userService))
               .addScreen(new DashboardScreen(consoleReader, router));
 
