@@ -13,7 +13,7 @@ public class RegisterScreen extends Screen {
 
     private final UserService userService;
     private static final Logger logger = LogManager.getLogger(RegisterScreen.class);
-    //private static FileAppender fileName = new FileAppender();
+
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
@@ -45,13 +45,11 @@ public class RegisterScreen extends Screen {
         // TODO replace the below souts with proper logging (to a file)
         try {
             userService.register(newUser);
-
-            //System.out.println("User successfully registered!");
-            logger.trace("User successfully registered!");
+            logger.info("User successfully registered!");
             router.navigate("/dashboard");
         } catch (Exception e) {
-            //System.out.println("User not registered!");
-            logger.error("User not registered");
+            logger.error(e.getMessage());
+            logger.debug("User not registered");
             logger.trace("Returning to welcome screen");
             router.navigate("/welcome");
         }
