@@ -1,2 +1,4 @@
 1:Wezley:Singleton:wezley.singleton@gmail.com:wsingleton:password
 2:Tester:McTesterson:tester@gmail.com:tester:test
+3:sean:smith:ssmith:ssmithuser:password
+4:e:e:ee:ee:eee

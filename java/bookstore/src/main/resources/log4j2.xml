@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" packages="com.revature.bookstore">
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss.SSS } - %t - %x - %-5p - %-10c:%m%n"/>
+        </Console>
+        <File name="fout" fileName="src/main/resources/app.log" append="true">
+            <PatternLayout>
+                <Pattern>%d{dd.MM.yyyy HH:mm:ss.SSS } - %t - %-5p - %-10c:%m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="fout"/>
+        </Root>
+    </Loggers>
+</Configuration>
