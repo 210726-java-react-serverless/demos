@@ -74,7 +74,7 @@ public class AppUser {
                .append(lastName).append(":")
                .append(email).append(":")
                .append(username).append(":")
-               .append(password).append(":");
+               .append(password);
 
         return builder.toString();
     }

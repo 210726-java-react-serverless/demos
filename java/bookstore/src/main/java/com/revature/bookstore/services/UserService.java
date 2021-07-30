@@ -45,7 +45,6 @@ public class UserService {
 
     private boolean isUserValid(String data, String username, String password) {
         String[] tokens = data.split(":");
-
         if (tokens[4].equals(username) && tokens[5].equals(password)) {
             return true;
         } else {
