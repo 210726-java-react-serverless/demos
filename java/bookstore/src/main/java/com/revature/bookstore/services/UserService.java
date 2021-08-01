@@ -4,6 +4,10 @@ import com.revature.bookstore.exceptions.InvalidRequestException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class UserService {
 
     private final UserRepository userRepo;
@@ -11,6 +15,7 @@ public class UserService {
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
+
 
     public AppUser register(AppUser newUser) {
 
@@ -34,4 +39,5 @@ public class UserService {
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
+
 }

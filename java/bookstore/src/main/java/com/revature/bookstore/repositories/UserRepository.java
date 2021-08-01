@@ -1,6 +1,8 @@
 package com.revature.bookstore.repositories;
 
 import com.revature.bookstore.models.AppUser;
+import com.revature.bookstore.screens.LoginScreen;
+import com.revature.bookstore.screens.Screen;
 
 
 import java.nio.file.Files;
@@ -11,31 +13,35 @@ import java.io.*;
 
 public class UserRepository implements CrudRepository<AppUser> {
 
-    private File dataSource;
+    private File dataSource = new File("src/main/resources/data.txt");
     /*
-    I put this method here instead of making it part of the CRUDREP interface because the logic is
-    specific to finding the username and password. I maybe could have parameterized it as a String varargs
-    to take any one of the AppUser fields, and use it more as a general search method.
+    This method Reads and returns a boolean depending on the screen that calls the method. This assumes each screen
+    will have a default reason to search the UserRepo.
      */
-    public boolean authenticate(String username, String password) {
-        dataSource = new File("src/main/resources/data.txt");
+    public boolean search(Screen callingScreen) {
         try (
-                BufferedReader reader = new BufferedReader(new FileReader(dataSource));
+                BufferedReader reader = new BufferedReader(new FileReader(this.getDataSource()));
         ) {
-            /*Each line of the data.txt file is split into a string array. Assuming that the order in which AppUser
-             fields are saved doesn't change, we know ahead of time where each field will be in the array.
-             */
-            String line = reader.readLine();
-            while (line != null) {
-                String[] splittedLine = line.split(":");
-                if ((splittedLine[4].equals(username)))
-                    if ((splittedLine[5].equals(password)))
-                        return true;
-                line=reader.readLine();
-            } return false;
+            if(callingScreen instanceof LoginScreen) {
+                LoginScreen login = (LoginScreen) callingScreen; //I checked to make sure this downcasting doesn't create a new instance of LoginScreen.
+                return loginSearch(login.getLoginUsername(), login.getLoginPassword(), reader);
+            }
         } catch (IOException e) {
             System.err.print("Exception thrown from file search.");
-        } return false; //the method should never reach this return statement, but Intellij complained.
+        }  return false; //Intellij complains unless i put this return statement here.
+    }
+
+    //Implementation of the search method for the login screen.
+    public boolean loginSearch(String username, String password, BufferedReader reader) throws IOException{
+        String line = reader.readLine();
+        while (line != null) {
+            String[] splittedLine = line.split(":");
+            if ((splittedLine[4].equals(username)))
+                if ((splittedLine[5].equals(password)))
+                    return true;
+            line=reader.readLine();
+        } return false;
+
     }
 
     @Override
@@ -47,8 +53,8 @@ public class UserRepository implements CrudRepository<AppUser> {
     public AppUser save(AppUser newUser) {
 
         try {
-            dataSource = new File("src/main/resources/data.txt");
-            FileWriter writer = new FileWriter(dataSource, true);
+
+            FileWriter writer = new FileWriter(this.getDataSource(), true);
             newUser.setId(newUser.getId());
             writer.append(newUser.toFile());
             writer.flush();
@@ -71,4 +77,11 @@ public class UserRepository implements CrudRepository<AppUser> {
         return false;
     }
 
+    public void setDataSource(File dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public File getDataSource() {
+        return dataSource;
+    }
 }

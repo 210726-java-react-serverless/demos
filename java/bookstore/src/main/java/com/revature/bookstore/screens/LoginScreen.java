@@ -6,6 +6,7 @@ import com.revature.bookstore.util.ScreenRouter;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen{
@@ -25,19 +26,15 @@ public class LoginScreen extends Screen{
 
     @Override
     public void render() throws Exception {
-        UserRepository repo = new UserRepository(); //see the authenticate() method in the UserRepo class definition
-
-            /* User inputs username and password, both are passed to the authenticate method. Passed in an
-             unending while loop that only breaks if you enter valid credentials, or you type 'exit' for the username.
-             */
+        UserRepository repo = new UserRepository();
             while(true) {
                 System.out.print("Enter your username, or type 'exit' to exit: ");
                 loginUsername = consoleReader.readLine();
                 if(loginUsername.equals("exit"))
                     break;
                 System.out.print("Enter your password: ");
-                String loginPassword = consoleReader.readLine();
-                if (repo.authenticate(loginUsername, loginPassword)) {
+                loginPassword = consoleReader.readLine();
+                if (repo.search(this)) {
                     System.out.println("Login successful!");
                     break;
                 } else{
@@ -49,6 +46,13 @@ public class LoginScreen extends Screen{
 
             }
 
+    public String getLoginUsername() {
+        return loginUsername;
+    }
+
+    public String getLoginPassword() {
+        return loginPassword;
+    }
 }
 
 
