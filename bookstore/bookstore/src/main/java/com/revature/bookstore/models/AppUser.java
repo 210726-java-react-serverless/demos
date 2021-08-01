@@ -16,6 +16,7 @@ public class AppUser {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.id = this.username.hashCode();
     }
 
     public int getId() {

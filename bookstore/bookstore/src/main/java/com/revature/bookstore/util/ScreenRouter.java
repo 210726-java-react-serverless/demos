@@ -1,5 +1,6 @@
 package com.revature.bookstore.util;
 
+import com.revature.bookstore.exceptions.InvalidRouteException;
 import com.revature.bookstore.screens.Screen;
 
 import java.util.HashSet;
@@ -15,11 +16,16 @@ public class ScreenRouter {
     }
 
     public void navigate(String route) {
+        boolean found = false;
         for(Screen screen: screens) {
             if(screen.getRoute().equals(route)) {
                 currScreen = screen;
+                found = true;
                 break;
             }
+        }
+        if(!found) {
+            throw new InvalidRouteException("Bad route");
         }
     }
 

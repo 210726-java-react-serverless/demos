@@ -13,6 +13,27 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     @Override
     public AppUser findById(int id) {
+        dataSource = new File("src/main/resources/data.txt");
+        AppUser user = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(dataSource))){
+
+            String str = reader.readLine();
+            while(str != null) {
+                //check it
+
+                //System.out.println(str.split(":"));
+                String[] parts = str.split(":");
+                if(Integer.parseInt(parts[0]) == id) {
+                    user = new AppUser(parts[1], parts[2], parts[3], parts[4], parts[5]);
+                    user.setId(id);
+                    return user;
+                }
+                str = reader.readLine();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -50,7 +71,8 @@ public class UserRepository implements CrudRepository<AppUser> {
         dataSource = new File("src/main/resources/data.txt");
 
         try (FileWriter writer = new FileWriter(dataSource, true)){
-            newResource.setId(generateId());
+            //Usernames SHOULD BE UNIQUE. This will generate a 'Unique' hash for the id based on the Username
+            newResource.setId(generateId(newResource.getUsername()));
             writer.write(newResource.toFile());
             writer.flush();
 
@@ -71,12 +93,11 @@ public class UserRepository implements CrudRepository<AppUser> {
         return false;
     }
 
-    private int generateId() {
+    private int generateId(String s) {
         Random rand = new Random();
 
-        int rando = rand.nextInt();
-        //Todo: Check if Id is already used
+        int id = s.hashCode();
 
-        return rando;
+        return id;
     }
 }

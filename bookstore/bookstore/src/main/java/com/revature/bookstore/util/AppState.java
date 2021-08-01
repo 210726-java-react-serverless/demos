@@ -1,5 +1,7 @@
 package com.revature.bookstore.util;
 
+import com.revature.bookstore.exceptions.InvalidRequestException;
+import com.revature.bookstore.exceptions.InvalidRouteException;
 import com.revature.bookstore.repository.UserRepository;
 import com.revature.bookstore.screens.DashScreen;
 import com.revature.bookstore.screens.HomeScreen;
@@ -16,8 +18,8 @@ public class AppState {
     private final ScreenRouter router;
 
     public AppState() {
-        alive = true;
-        router = new ScreenRouter();
+        this.alive = true;
+        this.router = new ScreenRouter();
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         UserRepository userRepo = new UserRepository();
         UserService userService = new UserService(userRepo);
@@ -41,10 +43,12 @@ public class AppState {
             try {
                 router.getCurrScreen().render();
             } catch (Exception e) {
-                e.printStackTrace();
+                if (!(e instanceof InvalidRouteException)) {
+                    e.printStackTrace();
+                }
+                alive = false;
             }
         }
     }
-
 
 }

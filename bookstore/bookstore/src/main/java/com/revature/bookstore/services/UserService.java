@@ -38,6 +38,11 @@ public class UserService {
         if(user.getEmail() == null || user.getEmail().trim().equals("")) return false;
         if(user.getUsername() == null || user.getUsername().trim().equals("")) return false;
 
+        //if a duplicate already exists in the db, reject
+        if(userRepo.findById(user.getId()) != null) {
+            return false;
+        }
+
         return true;
     }
 }
