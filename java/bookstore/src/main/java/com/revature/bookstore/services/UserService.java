@@ -12,6 +12,12 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
+    /**
+     * Takes in a non-null AppUser, validates it fields, and attempt to persist it to the datasource.
+     *
+     * @param newUser
+     * @return
+     */
     public AppUser register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
@@ -34,7 +40,7 @@ public class UserService {
 
     }
 
-    private boolean isUserValid(AppUser user) {
+    public boolean isUserValid(AppUser user) {
         if (user == null) return false;
         if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
         if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
@@ -42,4 +48,5 @@ public class UserService {
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
+
 }
