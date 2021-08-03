@@ -1,6 +1,7 @@
 package com.revature.bookstore.services;
 
 import com.revature.bookstore.exceptions.InvalidRequestException;
+import com.revature.bookstore.exceptions.ResourcePersistenceException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 
@@ -24,7 +25,9 @@ public class UserService {
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
-        // TODO validate that the provided username and email are unique (not already in the datasource)
+        if (userRepo.findUserByUsername(newUser.getUsername()) != null) {
+            throw new ResourcePersistenceException("Provided username is already taken!");
+        }
 
         return userRepo.save(newUser);
 
