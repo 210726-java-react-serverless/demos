@@ -1,6 +1,7 @@
 package com.revature.bookstore.services;
 
 import com.revature.bookstore.exceptions.InvalidRequestException;
+import com.revature.bookstore.exceptions.ResourcePersistenceException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 import org.junit.*;
@@ -39,14 +40,12 @@ public class UserServiceTestSuite {
 
     @Before // runs before each test case
     public void beforeEachTest() {
-        System.out.println("Before test");
         mockUserRepo = Mockito.mock(UserRepository.class);
         sut = new UserService(mockUserRepo);
     }
 
     @After // runs after each test case
     public void afterEachTest() {
-        System.out.println("After test");
         sut = null;
     }
 
@@ -101,8 +100,10 @@ public class UserServiceTestSuite {
 
         // Assert
         Assert.assertEquals(expectedResult, actualResult);
-        verify(mockUserRepo, times(1)).save(any());
+        verify(mockUserRepo, times(2)).save(any());
+
     }
+
     @Test(expected = InvalidRequestException.class)
     public void register_throwsException_whenGivenInvalidUser() {
 
@@ -112,15 +113,36 @@ public class UserServiceTestSuite {
         // Act
         try {
             sut.register(invalidUser);
-        // Assert
+
         } finally {
+            // Assert
             verify(mockUserRepo, times(0)).save(any());
         }
 
     }
 
-    @Test(expected = ResourcePersistanceException.class)
+    @Test(expected = ResourcePersistenceException.class)
     public void register_throwsException_whenGivenUserWithDuplicateUsername() {
+
+        // Arrange
+        AppUser existingUser = new AppUser("original", "original", "original", "duplicate", "original");
+        AppUser duplicate = new AppUser("first", "last", "email", "duplicate", "password");
+        when(mockUserRepo.findUserByUsername(duplicate.getUsername())).thenReturn(existingUser);
+
+        // Act
+        try {
+            sut.register(duplicate);
+        } finally {
+
+            // Assert
+            verify(mockUserRepo, times(1)).findUserByUsername(duplicate.getUsername());
+            verify(mockUserRepo, times(0)).save(duplicate);
+        }
+
+    }
+
+
+
 
         // Arrange
         AppUser existingUser = new AppUser("check", "this", "next", "duplicate", "pass1");

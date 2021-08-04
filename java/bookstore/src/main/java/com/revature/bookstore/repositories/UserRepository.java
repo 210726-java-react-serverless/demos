@@ -32,7 +32,7 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     }
 
-    public AppUser findUserByUsername(String s) {
+    public AppUser findUserByUsername(String username) {
         return null;
     }
 
@@ -43,6 +43,8 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     @Override
     public AppUser save(AppUser newUser) {
+
+        System.out.println("UserRepository.save invoked!");
 
         try (FileWriter writer = new FileWriter(userDataSource, true)) {
             newUser.setId(getNextId());
