@@ -1,0 +1,64 @@
+[
+    {
+        "username": "aanderson",
+        "favorites": [
+            {
+                "isbn": "978-0201616224",
+                "title": "The Pragmatic Programmer: From Journeyman to Master",
+                "authors": [
+                    "Andrew Hunt",
+                    "David Thomas"
+                ],
+                "genres": [
+                    "Non-Fiction", 
+                    "Technical",
+                    "Computer Science",
+                    "Educational"
+                ]
+            },
+            {
+                "isbn": "978-1617293148",
+                "title": "The Tao of Microservices",
+                "authors": [
+                    "Richard Rodger"
+                ],
+                "genres": [
+                    "Non-Fiction", 
+                    "Technical",
+                    "Computer Science",
+                    "Educational"
+                ]
+            }
+        ]
+    },
+    {
+        "username": "wsingleton",
+        "favorites": [
+            {
+                "isbn": "978-1501182102",
+                "title": "The Dark Tower I: The Gunslinger",
+                "authors": [
+                    "Steven King"
+                ],
+                "genres": [
+                    "Fiction", 
+                    "Dark Fantasy",
+                    "Western"
+                ]
+            },
+            {
+                "isbn": "978-0060850523",
+                "title": "Brave New World",
+                "authors": [
+                    "Aldous Huxley"
+                ],
+                "genres": [
+                    "Fiction", 
+                    "Science Fiction",
+                    "Dystopian"
+                ]
+            },
+            
+        ]
+    }
+]
