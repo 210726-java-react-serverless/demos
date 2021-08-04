@@ -1,12 +1,19 @@
 package com.revature.bookstore.services;
 
+import com.revature.bookstore.exceptions.InvalidRequestException;
 import com.revature.bookstore.models.AppUser;
 import com.revature.bookstore.repositories.UserRepository;
 import org.junit.*;
+import org.mockito.Mockito;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class UserServiceTestSuite {
 
     UserService sut; // SUT = System Under Test (the thing being tested)
+
+    private UserRepository mockUserRepo;
 
     /*
         Common JUnit 4 Annotations
@@ -33,7 +40,8 @@ public class UserServiceTestSuite {
     @Before // runs before each test case
     public void beforeEachTest() {
         System.out.println("Before test");
-        sut = new UserService(new UserRepository("")); // TODO fix this with mocking!
+        mockUserRepo = Mockito.mock(UserRepository.class);
+        sut = new UserService(mockUserRepo);
     }
 
     @After // runs after each test case
@@ -81,5 +89,53 @@ public class UserServiceTestSuite {
 
     }
 
+    @Test
+    public void register_returnsSuccessfully_whenGivenValidUser() {
+        // Arrange
+        AppUser expectedResult = new AppUser(1, "valid", "valid", "valid", "valid", "valid");
+        AppUser validUser = new AppUser("valid", "valid", "valid", "valid", "valid");
+        when(mockUserRepo.save(any())).thenReturn(expectedResult);
 
+        // Act
+        AppUser actualResult = sut.register(validUser);
+
+        // Assert
+        Assert.assertEquals(expectedResult, actualResult);
+        verify(mockUserRepo, times(1)).save(any());
+    }
+    @Test(expected = InvalidRequestException.class)
+    public void register_throwsException_whenGivenInvalidUser() {
+
+        // Arrange
+        AppUser invalidUser = new AppUser("","","","","");
+
+        // Act
+        try {
+            sut.register(invalidUser);
+        // Assert
+        } finally {
+            verify(mockUserRepo, times(0)).save(any());
+        }
+
+    }
+
+    @Test(expected = ResourcePersistanceException.class)
+    public void register_throwsException_whenGivenUserWithDuplicateUsername() {
+
+        // Arrange
+        AppUser existingUser = new AppUser("check", "this", "next", "duplicate", "pass1");
+        AppUser duplicateUsername = new AppUser("first", "last", "email", "duplicate", "pass");
+        when(mockUserRepo.findUserByUsername(duplicateUsername.getUsername())).thenReturn(existingUser);
+
+        // Act
+        try {
+            sut.register(duplicate);
+        } finally {
+            // Assert
+            verify(mockUserRepo, times(1)).findUserByUsername(duplicateUsername.getUsername());
+            verify(mockUserRepo, times(0)).save(duplicateUsername);
+        }
+
+
+    }
 }

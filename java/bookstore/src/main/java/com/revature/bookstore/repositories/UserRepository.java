@@ -32,6 +32,10 @@ public class UserRepository implements CrudRepository<AppUser> {
 
     }
 
+    public AppUser findUserByUsername(String s) {
+        return null;
+    }
+
     @Override
     public AppUser findById(int id) {
         return null;
