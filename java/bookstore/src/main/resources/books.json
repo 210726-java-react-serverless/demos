@@ -1,0 +1,360 @@
+[
+    {
+        "isbn": "978-1118974400",
+        "title": "OCA Study Guide",
+        "publisher": "Sybex | Wiley",
+        "authors": [
+            "Jeanne Boyarsky",
+            "Scott Selikoff"
+        ],
+        "availableFormats": [
+            {
+                "medium": "paperback",
+                "price": 34.99,
+                "stockCount": 13
+            },
+            {
+                "medium": "ebook",
+                "price": 36.00
+            }
+        ],
+        "genres": [
+            "Non-Fiction",
+            "Technical",
+            "Computer Science",
+            "Educational Guides"
+        ]
+    },
+    {
+        "isbn": "978-1118974400",
+        "title": "OCP Study Guide",
+        "publisher": "Sybex | Wiley",
+        "authors": [
+            "Jeanne Boyarsky",
+            "Scott Selikoff"
+        ],
+        "availableFormats": [
+            {
+                "medium": "paperback",
+                "price": 31.77,
+                "stockCount": 34
+            },
+            {
+                "medium": "ebook",
+                "price": 30.00
+            }
+        ],
+        "genres": [
+            "Non-Fiction",
+            "Technical",
+            "Computer Science",
+            "Educational Guides"
+        ]
+    },
+    {
+        "isbn": "978-1501182102",
+        "title": "The Dark Tower I: The Gunslinger",
+        "publisher": "Scribner",
+        "authors": [
+            "Steven King"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 15.99,
+                "stockCount": 23
+            },
+            {
+                "medium": "paperback",
+                "price": 7.99,
+                "stockCount": 45
+            },
+            {
+                "medium": "ebook",
+                "price": 10.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 4.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Dark Fantasy",
+            "Western"
+        ]
+    },
+    {
+        "isbn": "978-1501143530",
+        "title": "The Dark Tower II: The Drawing of the Three",
+        "publisher": "Scribner",
+        "authors": [
+            "Steven King"
+        ],
+        "availableFormats": [
+            {
+                "medium": "library binding",
+                "price": 30.60,
+                "stockCount": 50
+            },
+            {
+                "medium": "paperback",
+                "price": 13.99,
+                "stockCount": 45
+            },
+            {
+                "medium": "ebook",
+                "price": 10.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 4.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Dark Fantasy",
+            "Science Fiction",
+            "Western"
+        ]
+    },
+    {
+        "isbn": "978-1565892127",
+        "title": "Autobiography of a Yogi",
+        "publisher": "Crystal Clarity Publishers",
+        "authors": [
+            "Paramhansa Yogananda"
+        ],
+        "availableFormats": [
+            {
+                "medium": "paperback",
+                "price": 18.99,
+                "stockCount": 15
+            }
+        ],
+        "genres": [
+            "Non-Fiction", 
+            "Autobiography",
+            "Memoir"
+        ]
+    },
+    {
+        "isbn": "978-0201616224",
+        "title": "The Pragmatic Programmer: From Journeyman to Master",
+        "publisher": "Addison-Wesley",
+        "authors": [
+            "Andrew Hunt",
+            "David Thomas"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 38.99,
+                "stockCount": 17
+            },
+            {
+                "medium": "ebook",
+                "price": 28.99
+            }
+        ],
+        "genres": [
+            "Non-Fiction", 
+            "Technical",
+            "Computer Science",
+            "Educational"
+        ]
+    },
+    {
+        "isbn": "978-1617293148",
+        "title": "The Tao of Microservices",
+        "publisher": "Manning Publications",
+        "authors": [
+            "Richard Rodger"
+        ],
+        "availableFormats": [
+            {
+                "medium": "paperback",
+                "price": 37.99,
+                "stockCount": 17
+            },
+            {
+                "medium": "ebook",
+                "price": 38.99
+            }
+        ],
+        "genres": [
+            "Non-Fiction", 
+            "Technical",
+            "Computer Science",
+            "Educational"
+        ]
+    },
+    {
+        "isbn": "978-0735219109",
+        "title": "Where the Crawdads Sing",
+        "publisher": "G.P. Putnam's Sons",
+        "authors": [
+            "Delia Owens"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 9.99,
+                "stockCount": 17
+            },
+            {
+                "medium": "paperback",
+                "price": 9.99,
+                "stockCount": 17
+            },
+            {
+                "medium": "ebook",
+                "price": 12.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 2.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Literary Fiction",
+            "Mystery",
+            "Bildungsroman"
+        ]
+    },
+    {
+        "isbn": "978-0060850523",
+        "title": "Brave New World",
+        "publisher": "Harper Perennial",
+        "authors": [
+            "Aldous Huxley"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 20.99,
+                "stockCount": 12
+            },
+            {
+                "medium": "paperback",
+                "price": 11.99,
+                "stockCount": 45
+            },
+            {
+                "medium": "ebook",
+                "price": 9.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 3.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Science Fiction",
+            "Dystopian"
+        ]
+    },
+    {
+        "isbn": "978-0385302304",
+        "title": "Outlander",
+        "publisher": "Delacorte Press",
+        "authors": [
+            "Diana Gabaldon"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 15.99,
+                "stockCount": 1
+            },
+            {
+                "medium": "paperback",
+                "price": 8.99,
+                "stockCount": 7
+            },
+            {
+                "medium": "ebook",
+                "price": 5.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 4.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Historical Fiction",
+            "Fantasy"
+        ]
+    },
+    {
+        "isbn": "978-0385333481",
+        "title": "Cat's Cradle: A Novel",
+        "publisher": "Harper Perennial",
+        "authors": [
+            "Kurt Vonnegut"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 16.99,
+                "stockCount": 19
+            },
+            {
+                "medium": "paperback",
+                "price": 9.99,
+                "stockCount": 93
+            },
+            {
+                "medium": "ebook",
+                "price": 12.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 5.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Science Fiction",
+            "Satire"
+        ]
+    },
+    {
+        "isbn": "978-1501195914",
+        "title": "Blaze",
+        "publisher": "Scribner",
+        "authors": [
+            "Steven King",
+            "Richard Bachman"
+        ],
+        "availableFormats": [
+            {
+                "medium": "hardcover",
+                "price": 16.99,
+                "stockCount": 12
+            },
+            {
+                "medium": "paperback",
+                "price": 9.99,
+                "stockCount": 0
+            },
+            {
+                "medium": "ebook",
+                "price": 12.99
+            },
+            {
+                "medium": "audiobook",
+                "price": 5.99
+            }
+        ],
+        "genres": [
+            "Fiction", 
+            "Science Fiction",
+            "Satire"
+        ]
+    }
+    
+]
