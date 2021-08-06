@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 
 public class RegisterScreen extends Screen {
 
+    private final Logger logger = LogManager.getLogger(RegisterScreen.class);
     private final UserService userService;
     private final Logger logger = LogManager.getLogger(RegisterScreen.class);
 
