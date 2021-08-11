@@ -80,7 +80,7 @@ public class CalculatorServlet extends HttpServlet {
             Use a RequestDispatcher to forward the current request and response to the AnswerServlet
             for further processing.
          */
-        RequestDispatcher dispatcher = req.getRequestDispatcher("answer");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/answer");
         dispatcher.forward(req, resp); // forwarding maintains the original request and response objects! (redirects do not)
 
     }
