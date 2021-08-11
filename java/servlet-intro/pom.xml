@@ -15,6 +15,11 @@
     </properties>
 
     <dependencies>
+
+        <!--
+            This dependency gives us access to the Java/Jakarta EE Servlet API, which provides
+            a nice abstraction for dealing with HTTP web traffic.
+        -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -22,19 +27,49 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <pluginManagement>
             <plugins>
+
+                <!--
+                    This plugin provides lifecycle goals related to the deployment of the packaged
+                    application to the specified server. In this case, we are deploying the app to
+                    our local Apache Tomcat server and will be able to access it at:
+
+                        http://localhost:8080/servlet-intro
+
+                     To have Maven deploy your application to the web server run the following command
+                     at the top level of your project:
+
+                        mvn tomcat7:deploy
+
+                -->
                 <plugin>
+
+                    <!-- Artifact coordinates used by Maven to find the plugin on the Central Maven Repository -->
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
+
                     <configuration>
+
+                        <!-- A reference to the server credentials that we specified in $M2_HOME/conf/settings.xml -->
                         <server>LocalTomcat</server>
+
+                        <!-- The endpoint in the web server we want Maven to provide the WAR to -->
                         <url>http://localhost:8080/manager/text</url>
+
+                        <!-- The context path we want the application deployed to -->
                         <path>/servlet-intro</path>
+
+                        <!--
+                            Allows easily replace an older version of the app without having to run
+                            'mvn tomcat7:undeploy' first
+                        -->
                         <update>true</update>
                     </configuration>
+
                 </plugin>
             </plugins>
         </pluginManagement>
