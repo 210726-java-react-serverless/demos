@@ -13,6 +13,7 @@
     <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>com.revature.servlets.TestServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>

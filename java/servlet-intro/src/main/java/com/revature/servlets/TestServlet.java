@@ -8,6 +8,10 @@ import java.io.IOException;
 
 public class TestServlet extends HttpServlet {
 
+    public TestServlet() {
+        System.out.println("TestServlet instantiated!");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(req.getMethod() + " received from client.");

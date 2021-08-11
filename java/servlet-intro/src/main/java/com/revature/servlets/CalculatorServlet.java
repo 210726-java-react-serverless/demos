@@ -60,7 +60,6 @@ public class CalculatorServlet extends HttpServlet {
                     break;
                 default:
                     // client specified an improper operator; we return a 400 (Bad Request)
-                    resp.setStatus(400);
                     throw new UnrecognizedOperatorException();
             }
 
