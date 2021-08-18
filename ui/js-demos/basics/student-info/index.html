@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Student Info Table</title>
+
+    <!-- Bootstrap - CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+
+        <div id="student-info-form">
+            <h1>Student Information</h1>
+            <br/><br/>
+
+            <h4>Name:</h4>
+            <input type="text" class="form-control" id="student-name">
+
+            <h4>Major:</h4>
+            <input type="text" class="form-control" id="student-major">
+
+            <br/>
+            <button class="btn btn-primary" id="add-student">Add Student</button>
+            <br/><hr/><br/>
+
+            <table class="table" id="student-table">
+                <thead>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Major</th>
+                </thead>
+                <tbody id="student-table-body">
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</body>
+</html>
