@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <main class="jumbotron">
+        <input type="text" id="new-item" class="form-control" placeholder="New Item">
+        <br/>
+        <button class="btn btn-primary" id="add-item">Add Item</button>
+
+        <div class="row">
+            <div class="col">
+                <br/>
+                <h3>Grocery List</h3>
+                <ul id="grocery-list-items">
+                    <li>Veggies</li>
+                    <li>Water</li>
+                    <li>Fruits</li>
+                </ul>
+            </div>
+            <div class="col">
+                <br/>
+                <h3>Purchased Items</h3>
+                <ul id="purchased-items"></ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>
