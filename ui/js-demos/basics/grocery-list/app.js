@@ -22,6 +22,8 @@ input.addEventListener('keydown', function(e) {
         addItem();
     }
 })
+grocery.addEventListener('mouseover', changeCursor);
+purchased.addEventListener('mouseover', changeCursor);
 
 grocery.addEventListener('click',function(e) {
     moveItemToPurchased(e.target);
@@ -32,7 +34,7 @@ purchased.addEventListener('click',function(e) {
 })
 
 function addItem() {
-    if (input) {
+    if (input.value) {
         let newItem = `
         <li>${input.value}</li>`;
         grocery.innerHTML += newItem;
@@ -42,10 +44,15 @@ function addItem() {
 
 function moveItemToPurchased(element) {
     purchased.appendChild(element);
-    grocery.removeChild(element);
+    //grocery.removeChild(element);
 }
 
 function moveItemToGrocery(element) {
     grocery.appendChild(element);
-    purchased.removeChild(element);
+    //purchased.removeChild(element);
+}
+
+function changeCursor() {
+    grocery.style.cursor = 'pointer';
+    purchased.style.cursor = 'pointer';
 }
