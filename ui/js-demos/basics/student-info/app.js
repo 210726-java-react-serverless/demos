@@ -39,7 +39,8 @@ function addStudent() {
         </tr>`;
         tableBody.innerHTML += newStudent;
         id++;
+        studentName.value = '';
+        major.value = '';
     }
-    studentName.value = '';
-    major.value = '';
+    
 }

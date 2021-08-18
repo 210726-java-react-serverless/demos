@@ -10,3 +10,42 @@
     NOTE: You will not need to edit the HTML file at all for this activity.
 
  */
+
+const grocery = document.getElementById('grocery-list-items');
+const purchased = document.getElementById('purchased-items');
+const input = document.getElementById('new-item');
+const button = document.getElementById('add-item');
+
+button.addEventListener('click', addItem);
+input.addEventListener('keydown', function(e) {
+    if (e.key == 'Enter') {
+        addItem();
+    }
+})
+
+grocery.addEventListener('click',function(e) {
+    moveItemToPurchased(e.target);
+})
+
+purchased.addEventListener('click',function(e) {
+    moveItemToGrocery(e.target);
+})
+
+function addItem() {
+    if (input) {
+        let newItem = `
+        <li>${input.value}</li>`;
+        grocery.innerHTML += newItem;
+        input.value = '';
+    }
+}
+
+function moveItemToPurchased(element) {
+    purchased.appendChild(element);
+    grocery.removeChild(element);
+}
+
+function moveItemToGrocery(element) {
+    grocery.appendChild(element);
+    purchased.removeChild(element);
+}
