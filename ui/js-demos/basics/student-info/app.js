@@ -24,20 +24,22 @@ let id = 0;
 
 function addStudent() {
     // add student to table
-    let newStudent = `
-    <tr>
-        <td>
-            ${id}
-        </td>
-        <td>
-            ${studentName.value}
-        </td>
-        <td>
-            ${major.value}
-        </td>
-    </tr>`;
-    tableBody.innerHTML += newStudent;
-    id++;
+    if (studentName.value && major.value) {
+        let newStudent = `
+        <tr>
+            <td>
+                ${id}
+            </td>
+            <td>
+                ${studentName.value}
+            </td>
+            <td>
+                ${major.value}
+            </td>
+        </tr>`;
+        tableBody.innerHTML += newStudent;
+        id++;
+    }
     studentName.value = '';
     major.value = '';
 }
