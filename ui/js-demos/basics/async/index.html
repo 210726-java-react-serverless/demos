@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTTP Communication with JavaScript</title>
+
+    <!-- Bootstrap - CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1>Star Wars API</h1>
+
+            <div class="form-group form-inline">
+
+                <div id="sw-logo-container">
+                    <img src='assets/star-wars-logo.png' width="600" alt="Star Wars logo"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group" id="sw-form">
+                    <input type="number" placeholder="Enter an id number" class="form-control" id="id"/>
+                    <select class="form-control" id="category">
+                        <option value="">Please select a value</option>
+                        <option value="people">People</option>
+                        <option value="planets">Planets</option>
+                        <option value="starships">Starships</option>
+                    </select>
+                    <button class="btn btn-primary btn-center" id="submitBtn">Get Info!</button>
+                </div>
+            </div>
+
+            <br/>
+
+            <div id="resultsContainer"></div>
+
+            <br/>
+
+            <p class="alert alert-warning" id="alertMessage">Please enter an id and select a category!</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- Bootstrap - JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>
