@@ -17,7 +17,7 @@ window.onload = () => {
     // Add event listeners onto various page elements
     idField.addEventListener('blur', fieldsValid);
     categoryField.addEventListener('blur', fieldsValid);
-    submitButton.addEventListener('click', getInfo); // switch this to "fetchInfo" to use Fetch API instead of AJAX
+    submitButton.addEventListener('click', asyncFetchInfo); // switch this to "fetchInfo" to use Fetch API instead of AJAX
 
     // Disable the submit button
     submitButton.setAttribute('disabled', 'true'); // use JS to add/remove attributes (id, class, etc.)
@@ -99,16 +99,22 @@ function fetchInfo() {
             https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md
 
      */
-    fetch(`https://swapi.dev/api/${category}/${id}`)
-        .then(resp => {
-            console.log(resp.status);
-            console.log(resp.headers);
-            return resp.json()
-        }).then(data => {
-            renderResults(data);
-        }).catch(err => {
-            console.error(err);
-        });
+    // fetch(`https://swapi.dev/api/${category}/${id}`)
+    //     .then(resp => {
+    //         console.log(resp.status);
+    //         console.log(resp.headers);
+    //         return resp.json()
+    //     }).then(data => {
+    //         renderResults(data);
+    //     }).catch(err => {
+    //         console.error(err);
+    //     });
+
+    let responsePromise = fetch(`https://swapi.dev/api/${category}/${id}`);
+    let dataPromise = responsePromise.then(resp => resp.json());
+    dataPromise.then(data => console.log(data));
+
+    console.log('this should be after the fetch prints the response');
 
     // STAY OUT OF PROMISE HELL! DO NOT NEST YOUR .then CALLBACKS!
     // fetch(`https://swapi.dev/api/${category}/${id}`)
@@ -124,7 +130,28 @@ function fetchInfo() {
     // })
 }
 
+async function asyncFetchInfo() {
+
+    console.log('Inside of asyncFetchInfo()!');
+
+    let id = idField.value;
+    let category = categoryField.value;
+
+    // TODO: Convert this to use ES8's async/await
+    try {
+        let response = await fetch(`https://swapi.dev/api/${category}/${id}`);
+        let data = await response.json();
+        renderResults(data);
+        console.log('this should be after the fetch prints the response');
+    } catch (e) {
+        console.log('error caught!')
+        console.log(e);
+    }
+
+}
+
 // TODO: Dynamically render some elemnts on the page to display the response payload data.
 function renderResults(responsePayload) {
     console.log(responsePayload);
 }
+
