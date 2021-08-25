@@ -1,12 +1,17 @@
-import { User } from "../models/user";
-import {AppBar, Link, List, ListItem, ListItemText, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, List, ListItem, ListItemText, Toolbar, Typography} from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { Principal } from "../dtos/principal";
 
 interface INavbarProps {
-    currentUser: User | undefined,
-    setCurrentUser: (nextUser: User | undefined) => void
+    currentUser: Principal | undefined,
+    setCurrentUser: (nextUser: Principal | undefined) => void
 }
 
 export function NavbarComponent(props: INavbarProps) {
+
+    function logout() {
+        props.setCurrentUser(undefined);
+    }
 
     return (
         <>
@@ -22,18 +27,18 @@ export function NavbarComponent(props: INavbarProps) {
                                         <>
                                             <ListItemText inset>
                                                 <Typography color="inherit" variant="h6">
-                                                    Home
+                                                    <Link to="/">Home</Link>
                                                 </Typography>
                                             </ListItemText>
                                             <ListItemText inset>
-                                                <Typography color="inherit" variant="h6">Logout</Typography>
+                                                <Typography color="inherit" variant="h6" onClick={logout}>Logout</Typography>
                                             </ListItemText>
                                         </>
                                         :
                                         <>
                                             <ListItemText inset>
                                                 <Typography color="inherit" variant="h6">
-                                                    Login
+                                                    <Link to="/login">Login</Link>
                                                 </Typography>
                                             </ListItemText>
                                             <ListItemText inset>

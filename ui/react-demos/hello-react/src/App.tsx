@@ -1,25 +1,27 @@
 import React, {useState} from 'react';
-import './App.css';
 
 import { NavbarComponent } from "./components/NavbarComponent";
-import {User} from "./models/user";
+import LoginComponent from "./components/LoginComponent";
+import {Principal} from "./dtos/principal";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import HomeComponent from "./components/HomeComponent";
 
 function App() {
 
-  // const [authUser, setAuthUser] = useState(undefined as User | undefined);
-  let tempUser: User = {
-    id: 'kghjsad923hr982h',
-    username: 'temp',
-    password: 'temp',
-    firstName: 'Temper',
-    lastName: 'McTemperson',
-    email: 'temp@revature.com'
-  };
-
-  const [authUser, setAuthUser] = useState(undefined as User | undefined);
+  const [authUser, setAuthUser] = useState(undefined as Principal | undefined);
 
   return (
-    <NavbarComponent currentUser={authUser} setCurrentUser={setAuthUser}/>
+    <>
+
+        <BrowserRouter>
+            <NavbarComponent currentUser={authUser} setCurrentUser={setAuthUser}/>
+            <Switch>
+                <Route exact path="/" render={() => <HomeComponent currentUser={authUser} /> } />
+                <Route path="/login" render={() => <LoginComponent currentUser={authUser} setCurrentUser={setAuthUser} /> } />
+            </Switch>
+        </BrowserRouter>
+
+    </>
   );
 
 }
