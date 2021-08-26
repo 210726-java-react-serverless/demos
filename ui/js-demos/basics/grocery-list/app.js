@@ -11,6 +11,7 @@
 
  */
 
+<<<<<<< HEAD
 const grocery = document.getElementById('grocery-list-items');
 const purchased = document.getElementById('purchased-items');
 const input = document.getElementById('new-item');
