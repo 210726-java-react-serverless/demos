@@ -1,24 +1,22 @@
 import {Principal} from "../dtos/principal";
+import {bookstoreClient} from "./bookstore-client";
 
 export const authenticate = async (credentials: {username: string, password: string}) => {
 
-    let resp = await fetch('http://bookstoreapi-env.eba-ysp2j7xq.us-east-1.elasticbeanstalk.com/auth', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    });
+    let resp = await bookstoreClient.post('/auth', credentials);
 
     if (resp.status === 401) {
-        throw await resp.json();
+        throw resp.data;
     }
 
-    let token: string | null = resp.headers.get('Authorization');
+    let token: string | null = resp.headers['authorization'];
 
-    let principal: Principal = await resp.json();
-    console.log(principal)
-    if (token && principal) principal.token = token;
+    let principal: Principal = resp.data;
+
+    if (token && principal) {
+        principal.token = token;
+        localStorage.setItem('api-token', token);
+    }
 
     return principal;
 

@@ -30,7 +30,10 @@ function LoginComponent(props: ILoginProps) {
             if (username && password) {
                 let principal = await authenticate({username, password});
                 console.log(principal);
+                localStorage.setItem('app-state', JSON.stringify(principal));
+                sessionStorage.setItem('app-state', JSON.stringify(principal));
                 props.setCurrentUser(principal);
+
             } else {
                 setErrorMessage('You must provide a username and a password!');
             }
