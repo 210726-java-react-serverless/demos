@@ -22,7 +22,7 @@ public class AppConfig {
     @Bean(name = "myCoach")
     @Scope("prototype")
     public Coach someCoach() {
-        return new BaseballCoach(motivationService()); // programmatic constructor injection
+        return new BaseballCoach(motivationService()); // programmatic constructor injection (manual bean wiring)
     }
 
     @Bean
@@ -33,7 +33,7 @@ public class AppConfig {
     @Bean(initMethod = "customInit", destroyMethod = "customDestroy")
     public FootballCoach footballCoach() {
         FootballCoach footballCoach = new FootballCoach();
-        footballCoach.setMotivationService(motivationService()); // programmatic setter injection
+        footballCoach.setMotivationService(motivationService()); // programmatic setter injection (manual bean wiring)
         footballCoach.setTeamName("The Cafebabes");
         footballCoach.setEmail(coachEmail);
         return footballCoach;
