@@ -36,9 +36,10 @@ public class UserService {
         }
 
         return users.stream()
-                    .filter(u -> u.getId() == id)
+                    .filter(user -> user.getId() == id)
                     .findFirst()
-                    .orElseThrow(ResourceNotFoundException::new);
+                    .orElseThrow(RuntimeException::new);
+
     }
 
 }

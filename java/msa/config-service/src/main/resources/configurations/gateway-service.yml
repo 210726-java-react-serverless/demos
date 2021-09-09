@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: git add -A://user-service
+          predicates:
+            - Path=/users/**
+        - id: book-service
+          uri: lb://book-service
+          predicates:
+            - Path=/books/**

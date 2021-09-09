@@ -1,0 +1,13 @@
+server:
+  port: 10005
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+app:
+  example: other-value

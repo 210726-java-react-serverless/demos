@@ -1,0 +1,8 @@
+server:
+  port: 10002
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: true
+    enabled: true
