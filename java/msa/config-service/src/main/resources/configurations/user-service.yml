@@ -6,3 +6,22 @@ eureka:
     fetch-registry: false
     register-with-eureka: true
     enabled: true
+
+cloud:
+  aws:
+    region:
+      static: us-east-2
+    credentials:
+      accessKey: # Your AWS Access Key would go here (be careful not to expose it on the Internet!)
+      secretKey: # Your AWS Secret Access Key would go here (be careful not to expose it on the Internet!)
+    stack:
+      auto: false
+
+# This is set in order to prevent Spring Cloud AWS from throwing an exception (just a warning, doesn't impact build)
+# Because by default, it will assume that this application is running on an EC2 - which for local deployments is invalid.
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
