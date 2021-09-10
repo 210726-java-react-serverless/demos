@@ -9,7 +9,7 @@ spring:
           enabled: true
       routes:
         - id: user-service
-          uri: git add -A://user-service
+          uri: lb://user-service
           predicates:
             - Path=/users/**
         - id: book-service
